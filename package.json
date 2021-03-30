@@ -1,0 +1,53 @@
+{
+  "name": "gordonpike",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt-ts",
+    "build": "nuxt-ts build",
+    "start": "nuxt-ts start",
+    "generate": "nuxt-ts generate",
+    "lint:js": "eslint --ext \".js,.vue\" --ignore-path .gitignore .",
+    "lint:style": "stylelint \"**/*.{vue,css}\" --ignore-path .gitignore",
+    "lint": "yarn lint:js && yarn lint:style",
+    "test": "jest",
+    "deploy": "rsync -av  ./dist/ riverru3@riverruntechnologies.com:~/public_html/gordonpike --delete"
+  },
+  "dependencies": {
+    "@nuxt/content": "^1.11.1",
+    "@nuxt/typescript-runtime": "^2.0.1",
+    "@nuxtjs/axios": "^5.12.5",
+    "@nuxtjs/google-analytics": "^2.4.0",
+    "@nuxtjs/pwa": "^3.3.5",
+    "@nuxtjs/sitemap": "^2.4.0",
+    "core-js": "^3.8.3",
+    "luxon": "^1.25.0",
+    "nuxt": "^2.14.12",
+    "sass": "^1.32.7",
+    "sass-loader": "10",
+    "vue-property-decorator": "^9.1.2"
+  },
+  "devDependencies": {
+    "@nuxt/types": "^2.14.12",
+    "@nuxt/typescript-build": "^2.0.4",
+    "@nuxtjs/eslint-config-typescript": "^5.0.0",
+    "@nuxtjs/eslint-module": "^3.0.2",
+    "@nuxtjs/stylelint-module": "^4.0.0",
+    "@nuxtjs/tailwindcss": "^3.4.2",
+    "@vue/test-utils": "^1.1.2",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-eslint": "^10.1.0",
+    "babel-jest": "^26.6.3",
+    "eslint": "^7.18.0",
+    "eslint-plugin-nuxt": "^2.0.0",
+    "eslint-plugin-vue": "^7.5.0",
+    "fibers": "^5.0.0",
+    "jest": "^26.6.3",
+    "pug": "^3.0.0",
+    "pug-plain-loader": "^1.1.0",
+    "stylelint": "^13.9.0",
+    "stylelint-config-standard": "^20.0.0",
+    "ts-jest": "^26.4.4",
+    "vue-jest": "^3.0.4"
+  }
+}
