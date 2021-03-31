@@ -6,17 +6,17 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#363759',
-        secondary: '#7B95A6',
-        tertiary: '#BACDD9',
-        quaternary: '#E9EFF2',
-        quinary: '#5A758C',
+        primary: '#2E83F2',
+        secondary: '#2E97F2',
+        tertiary: '#0D1A26',
+        quaternary: '#16F2F2',
+        quinary: '#1B618C',
 
-        background: '#5A758C',
-        highlight: '#BACDD9',
-        alternate: '#7B95A6',
+        background: '#0D1A26',
+        highlight: '#2E97F2',
+        alternate: '#1B618C',
         cardback: '#E9EFF2',
-        cardalternate: '#BACDD9'
+        cardalternate: '#D1D5DB'
       }
 
       // primary: '#0F5FA6',

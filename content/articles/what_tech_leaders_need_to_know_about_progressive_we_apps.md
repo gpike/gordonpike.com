@@ -2,9 +2,9 @@
 title: What Tech Leaders Need To Know About Progressive Web Apps
 date: 2019-07-02
 published: true
-tags: ['AEM', 'Adobe Experience Manager']
+tags: ['PWA', 'Web Front End']
 series: false
-cover_image: /images/articles/race.jpeg
+cover_image: /images/articles/race.jpg
 cover_caption: 'Hello'
 canonical_url: false
 author: Gordon Pike

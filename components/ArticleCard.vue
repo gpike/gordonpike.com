@@ -6,13 +6,13 @@
             <div class="flex justify-between items-center">
                 <span class="font-light text-gray-600">{{ formatDate(article.date) }}</span>
                 <a v-for="tag in article.tags" :key="tag" href="#"
-                    class="px-2 py-1 bg-secondary text-gray-100 font-bold rounded hover:bg-tertiary">{{ tag }}</a>
+                    class="px-2 py-1 bg-quinary text-gray-100 font-bold rounded hover:bg-quaternary">{{ tag }}</a>
             </div>
             <div class="mt-2"><a href="#" class="text-2xl text-gray-700 font-bold hover:underline">{{ article.title }}</a>
                 <p class="mt-2 text-gray-600">{{ article.description }}</p>
             </div>
             <div class="flex justify-between items-center mt-4"><a :href="blogPath(article.slug)"
-                    class="text-primary hover:underline">Read more</a>
+                    class="text-tertiary hover:underline">Read more</a>
                 <div><a href="#" class="flex items-center"><img
                             :src="article.author_image"
                             alt="avatar" class="mx-4 w-10 h-10 object-cover rounded-full hidden sm:block">
