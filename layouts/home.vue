@@ -1,18 +1,13 @@
 <template>
-  <div class="bg-background">
-    <heading></heading>
-    <div class="flex">
-      <content>
-        <nuxt/>
-      </content>
-      <aside>
-       <img class="inline-block h-10 w-10 rounded-full ring-2 ring-white bg-secondary" src="~/static/images/gpike.png" alt="Gordon Pike">
-       <video class="hero-video inline-block h-32 w-32 rounded-full ring-4 ring-white" poster="/videos/gpyes.jpeg" id="bgvid" playsinline autoplay muted loop>
-         <source src="/videos/gpyes.webm" type="video/webm">
-       </video>
-      </aside>
-    </div>
-    <footer></footer>
+  <div class="bg-background grid grid-cols-3 gap-4">
+    <heading class="col-span-full"></heading>
+    <content class="col-span-2 pl-6">
+      <nuxt/>
+    </content>
+    <aside class="col-span-1 pr-4">
+      <about-card/>
+    </aside>
+    <footer class="col-span-full"></footer>
 
   </div>
 </template>
@@ -20,15 +15,12 @@
 <script>
   import Heading from '~/components/Heading.vue'
   import Footer from '~/components/Footer.vue'
+  import AboutCard from '~/components/AboutCard.vue'
   export default {
     components: {
       Heading,
-      Footer
-    },
-    mounted() {
-      let vid = this.$el.getElementsByClassName('hero-video')[0];
-      console.log(vid)
-      vid.playbackRate = 0.5;
+      Footer,
+      AboutCard
     }
 
   }

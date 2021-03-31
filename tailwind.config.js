@@ -6,16 +6,29 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#0F5FA6',
-        secondary: '#36ABD9',
-        tertiary: '#177FBF',
-        quaternary: '#C1D4D9',
-        quinary: '#080C26',
+        primary: '#363759',
+        secondary: '#7B95A6',
+        tertiary: '#BACDD9',
+        quaternary: '#E9EFF2',
+        quinary: '#5A758C',
 
-        background: '#080C26',
-        highlight: '#5679A6',
-        alternate: '#263F73'
+        background: '#5A758C',
+        highlight: '#BACDD9',
+        alternate: '#7B95A6',
+        cardback: '#E9EFF2',
+        cardalternate: '#BACDD9'
       }
+
+      // primary: '#0F5FA6',
+      // secondary: '#36ABD9',
+      // tertiary: '#177FBF',
+      // quaternary: '#C1D4D9',
+      // quinary: '#080C26',
+
+      // background: '#080C26',
+      // highlight: '#5679A6',
+      // alternate: '#263F73'
+
 
       // colors: {
       //   primary: '#D97398',
