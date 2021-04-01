@@ -13,7 +13,7 @@ import ArticleList from '~/components/ArticleList.vue'
     name: 'Home',
     layout: 'home',
     async asyncData ({ $content, params }) {
-      const articles = await $content('articles').sortBy('date').fetch()
+      const articles = await $content('articles').sortBy('date','desc').fetch()
       return { articles }
     }
   }
