@@ -6,10 +6,10 @@
         <source src="/videos/gpyes.webm" type="video/webm">
       </video>
       <div class="text-lg text-gray-700 font-bold pt-2">
-        Story Teller | Solver | Leader
+        Gordon Pike
       </div>
-      <div class="text-base text-gray-600 pt-2">
-        A leader in technology and strategy.
+      <div class="p-4 text-base text-gray-600 pt-2">
+        A leader in technology and strategy. I have a passion for using technology to solve problems. I had a manager once say they could give me infinitely complex problems. Abother said I can pick and understand technolgoies quickly. I love that. That is where I shine.
       </div>
     </div>
   </div>

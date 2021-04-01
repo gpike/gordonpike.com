@@ -8,8 +8,8 @@
             Gordon Pike
           </span>
         </div>
-        <div class="text-white text-lg text-bold font-light">
-          Story Teller | Solver | Leader | Thought Leader
+        <div class="text-white text-opacity-50 text-lg text-bold font-light">
+          Story Teller | Problem Solver | Thought Leader | Speaker
         </div>
       </div>
     </div>

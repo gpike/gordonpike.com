@@ -4,7 +4,7 @@ date: 2019-07-02
 published: true
 tags: ['PWA', 'Web Front End']
 series: false
-cover_image: /images/articles/race.jpg
+cover_image: /images/articles/race2.jpeg
 cover_caption: 'Hello'
 canonical_url: false
 author: Gordon Pike
