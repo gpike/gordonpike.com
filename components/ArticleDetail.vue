@@ -1,12 +1,12 @@
 <template>
-  <article class="py-12 px-4 bg-white">
-    <img class="width-full" :src="article.cover_image" />
+  <article class="bg-white">
+    <img class="w-full" :src="article.cover_image" />
     <h1 class="mt-4 text-4xl text-center mb-4 font-semibold font-heading font-semibold"> {{ article.title }}</h1>
-    <p class="text-center mb-5">
+    <p class="text-center p-4 mb-5">
       <span>{{ formatDate(article.date) }}</span>
       <a class="ml-1 text-indigo-600 hover:underline" href="#"> {{ article.author }}</a>
     </p>
-    <nuxt-content class="p-4":document="article" />
+    <nuxt-content class="px-8 font-body font-thin text-lg leading-loose mx-auto" :document="article" />
   </article>
 </template>
 
