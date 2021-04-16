@@ -6,7 +6,7 @@
       <span>{{ formatDate(article.date) }}</span>
       <a class="ml-1 text-indigo-600 hover:underline" href="#"> {{ article.author }}</a>
     </p>
-    <nuxt-content class="px-8 font-body font-thin text-lg leading-loose mx-auto" :document="article" />
+    <nuxt-content class="article-body px-8 font-body font-thin text-lg leading-loose prose prose-sm sm:prose lg:prose-lg xl:prose-2xl mx-auto" :document="article" />
   </article>
 </template>
 
@@ -34,8 +34,14 @@
   }
 </script>
 
-<style lang="scss" scoped>
-  .dummy {
-    display: block;
+<style lang="scss">
+  .article-body {
+    h2 {
+      display: block;
+      font-size: 1.5em;
+      margin-block-start: 0.83em;
+      margin-block-end: 0.83em;
+      font-weight: bold;
+    }
   }
 </style>

@@ -4,7 +4,7 @@
           <img class="h-56 w-full rounded-tl-lg rounded-tr-lg" :src="article.cover_image" />
           <div class="px-10 py-6">
             <div class="font-light text-gray-600">{{ formatDate(article.date) }}</div>
-            <div class="mt-2"><a href="blogPath(article.slug)" class="text-2xl text-gray-700 font-bold hover:underline">{{ article.title }}</a>
+            <div class="mt-2"><a :href="blogPath(article.slug)" class="text-2xl text-gray-700 font-bold hover:underline">{{ article.title }}</a>
                 <!-- <p class="mt-2 text-gray-600">{{ article.description }}</p> -->
             </div>
             <div class="mt-2 mb-2 flex justify-between items-center">
