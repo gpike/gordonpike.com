@@ -30,9 +30,10 @@ export default {
     "@nuxtjs/stylelint-module",
     // https://go.nuxtjs.dev/tailwindcss
     "@nuxtjs/tailwindcss",
-    "@nuxtjs/google-analytics"
+    "@nuxtjs/google-analytics",
+    "@nuxtjs/gtm"
   ],
-  googleAnalytics: {
+  gtm: {
     id: "G-8X2MMD1JDV"
   },
   // Modules: https://go.nuxtjs.dev/config-modules
