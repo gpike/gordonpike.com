@@ -11,7 +11,7 @@
     "lint:style": "stylelint \"**/*.{vue,css}\" --ignore-path .gitignore",
     "lint": "yarn lint:js && yarn lint:style",
     "test": "jest",
-    "deploy": "rsync -av  ./dist/ riverru3@riverruntechnologies.com:~/public_html/gordonpike --delete"
+    "deploy": "rsync -av  ./dist/ agileike@agilepike.com:~/gordonpike.com --delete"
   },
   "dependencies": {
     "@nuxt/content": "^1.11.1",

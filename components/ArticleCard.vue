@@ -8,7 +8,7 @@
                 <!-- <p class="mt-2 text-gray-600">{{ article.description }}</p> -->
             </div>
             <div class="mt-2 mb-2 flex justify-between items-center">
-                <a v-for="tag in article.tags" :key="tag" href="#"
+                <a v-for="tag in article.tags" :key="tag" :href="categoryPath(tag)"
                     class="px-2 py-1 bg-quinary text-gray-100 text-sm font-semibold rounded hover:bg-quaternary">{{ tag }}</a>
             </div>
             <div class="flex justify-between items-center mt-4"><a :href="blogPath(article.slug)"
@@ -46,6 +46,11 @@
 
       blogPath: (blogName) => {
         return `/blog/${blogName}`
+      },
+
+      categoryPath: (category) => {
+        const cat = category.replace(/ /g, '_');
+        return `/category/${cat}`
       }
     }
 
