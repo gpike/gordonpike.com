@@ -1,7 +1,7 @@
 <template>
   <div class="bg-cardalternate max-w-4xl m-4 my-6 rounded-lg shadow-md">
     <div class="flex flex-col w-full items-center">
-      <h3 class="w-full bg-primary text-white uppercase font-bold rounded-tl-lg rounded-tr-lg text-center pt-2 pb-2">About</h3>
+      <h3 class="w-full bg-primary text-white uppercase font-bold rounded-tl-lg rounded-tr-lg text-center pt-2 pb-2">Related Articles</h3>
       <video class="hero-video inline-block w-32 rounded-full ring-4 ring-white pt-2" poster="/images/gpyes.jpeg" id="bgvid" playsinline autoplay muted loop>
         <source src="/videos/gpyes.webm" type="video/webm">
       </video>
