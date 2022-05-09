@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <aside>
     <h1>Side</h1>
-  </div>
+  </aside>
 </template>
 <script>
 export default {

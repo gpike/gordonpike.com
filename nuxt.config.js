@@ -1,19 +1,42 @@
+import common from './utils/common'
+
+const site = common.readYaml('./content', 'siteconfig.yml')
+
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'blog',
+    title: site.title,
+    htmlAttrs: {
+      lang: 'en-US',
+      // class: 'bg-black',
+    },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
+      { hid: 'description', name: 'description', content: site.description },
       { name: 'format-detection', content: 'telephone=no' },
+      { property: 'og:site_name', content: site.og_site_name },
+      { property: 'og:image:width', content: site.og_image_width },
+      { property: 'og:image:height', content: site.og_image_height },
+      { name: 'twitter:site', content: site.twitter_site },
+      { name: 'twitter:card', content: site.twitter_card },
+      {
+        hid: 'keywords',
+        property: 'keywords',
+        content: site.keywords,
+      },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      {
+        rel: 'stylesheet',
+        href: 'https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway&family=Roboto&family=Roboto+Slab&display=swap',
+      },
+    ],
   },
-
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [],
 

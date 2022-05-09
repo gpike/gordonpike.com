@@ -1,12 +1,11 @@
 <template>
-  <div>
+  <footer>
     <h1>Footer</h1>
-  </div>
+  </footer>
 </template>
 <script>
 export default {
   name: 'FooterComponent',
 }
 </script>
-<style lang="sass" scoped>
-</style>
+<style lang="sass" scoped></style>
