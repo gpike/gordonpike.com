@@ -5,13 +5,15 @@ published: true
 description: 'Description of page'
 is_canonical: true
 canonical_url: ''
-meta_description: ''
-og_title: ''
-og_type: ''
-og_url: ''
-og_description: ''
+meta_description: This is the great index page
+og_title: Blog Home Page
+og_type: page
+og_url: url
+og_description: This is the great index page
 og_image: ''
-keywords: []
+keywords:
+  - blog
+  - engine
 ---
 
 Page description here
