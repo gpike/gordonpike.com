@@ -8,7 +8,7 @@ exports.readYaml = (dir, file) => {
   if (fs.existsSync(filePath)) {
     const data = fs.readFileSync(filePath, 'utf8')
     yaml = YAML.parse(data)
-    console.table(`yaml: ${yaml}`)
+    // console.table(`yaml: ${yaml}`)
   }
   return yaml
 }
