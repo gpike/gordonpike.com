@@ -90,7 +90,7 @@ export default Vue.extend({
     }
   },
   beforeMount() {
-    this.absUrl = `${window.location.origin}${this.$route.fullPath}`
+    ;(this as any).absUrl = `${window.location.origin}${this.$route.fullPath}`
   },
 })
 </script>
