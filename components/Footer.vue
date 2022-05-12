@@ -1,18 +1,11 @@
 <template>
   <footer>
-    <p>
-      Footer
-    </p>
-
+    <h1>Footer</h1>
   </footer>
 </template>
-
 <script>
-  export default {
-  }
+export default {
+  name: 'FooterComponent',
+}
 </script>
-
-<!--
-<style lang="sass" scoped>
-</style>
--->
+<style lang="sass" scoped></style>

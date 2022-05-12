@@ -1,18 +1,43 @@
+import common from './utils/common'
+
+const site = common.readYaml('./content', 'siteconfig.yml')
+
 export default {
   // Target: https://go.nuxtjs.dev/config-target
-  target: "static",
+  target: 'static',
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: "gordonpike",
+    title: site.title,
+    htmlAttrs: {
+      lang: 'en-US'
+      // class: 'bg-black',
+    },
     meta: [
-      { charset: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { hid: "description", name: "description", content: "" }
+      { charset: 'utf-8' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { hid: 'description', name: 'description', content: site.description },
+      { name: 'format-detection', content: 'telephone=no' },
+      { property: 'og:site_name', content: site.og_site_name },
+      { property: 'og:image:width', content: site.og_image_width },
+      { property: 'og:image:height', content: site.og_image_height },
+      { name: 'twitter:site', content: site.twitter_site },
+      { name: 'twitter:card', content: site.twitter_card },
+      {
+        hid: 'keywords',
+        property: 'keywords',
+        content: site.keywords
+      }
     ],
-    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }]
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      {
+        rel: 'stylesheet',
+        href:
+          'https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway&family=Roboto&family=Roboto+Slab&display=swap'
+      }
+    ]
   },
-
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [],
 
@@ -25,26 +50,26 @@ export default {
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     // https://go.nuxtjs.dev/typescript
-    "@nuxt/typescript-build",
+    '@nuxt/typescript-build',
     // https://go.nuxtjs.dev/stylelint
-    "@nuxtjs/stylelint-module",
+    '@nuxtjs/stylelint-module',
     // https://go.nuxtjs.dev/tailwindcss
-    "@nuxtjs/tailwindcss",
-    "@nuxtjs/google-analytics",
-    "@nuxtjs/gtm"
+    '@nuxtjs/tailwindcss',
+    '@nuxtjs/google-analytics',
+    '@nuxtjs/gtm'
   ],
   gtm: {
-    id: "G-8X2MMD1JDV"
+    id: 'G-8X2MMD1JDV'
   },
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
-    "@nuxtjs/axios",
+    '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
-    "@nuxtjs/pwa",
+    '@nuxtjs/pwa',
     // https://go.nuxtjs.dev/content
-    "@nuxt/content",
-    "@nuxtjs/sitemap"
+    '@nuxt/content',
+    '@nuxtjs/sitemap'
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -53,7 +78,7 @@ export default {
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
     manifest: {
-      lang: "en"
+      lang: 'en'
     }
   },
 
@@ -63,33 +88,33 @@ export default {
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
   sitemap: {
-    hostname: "https://gordonpike.com",
+    hostname: 'https://gordonpike.com',
     gzip: true,
-    exclude: ["/secret", "/admin/**"]
+    exclude: ['/secret', '/admin/**']
   },
 
   hooks: {
-    "content:file:beforeInsert": document => {
-      if (document.extension === ".md") {
+    'content:file:beforeInsert': document => {
+      if (document.extension === '.md') {
         Object.entries(document).forEach(([key, value]) => {
-          const _key = `case_insensitive__${key}`;
+          const _key = `case_insensitive__${key}`
 
           // Strings
-          if (!document[_key] && typeof value === "string") {
-            document[_key] = value.toLocaleLowerCase();
+          if (!document[_key] && typeof value === 'string') {
+            document[_key] = value.toLocaleLowerCase()
           }
 
           // Arrays
           if (!document[_key] && Array.isArray(value)) {
             document[_key] = value.map(val => {
-              if (typeof val === "string") {
-                return val.toLocaleLowerCase();
+              if (typeof val === 'string') {
+                return val.toLocaleLowerCase()
               }
-              return val;
-            });
+              return val
+            })
           }
-        });
+        })
       }
     }
   }
-};
+}
