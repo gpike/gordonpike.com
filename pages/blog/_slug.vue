@@ -11,6 +11,7 @@ export default {
   components: {
     ArticleDetail,
   },
+  layout: 'BlogDetail',
   async asyncData({ $content, params }) {
     // console.info(params.slug)
     const article = await $content('articles', params.slug).fetch()

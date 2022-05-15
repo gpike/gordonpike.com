@@ -20,7 +20,7 @@
         >
       </p>
     </div>
-    <div class="grid grid-cols-4 gap-4">
+    <div class="">
       <nuxt-content
         class="
           col-span-3
@@ -37,20 +37,12 @@
         "
         :document="article"
       />
-      <aside class="col-span-1 pr-4">
-        <about-card />
-      </aside>
     </div>
   </article>
 </template>
 
 <script>
-import AboutCard from '~/components/AboutCard.vue'
-
 export default {
-  components: {
-    AboutCard,
-  },
   props: {
     article: {
       type: Object,
