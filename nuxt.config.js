@@ -10,7 +10,7 @@ export default {
   head: {
     title: site.title,
     htmlAttrs: {
-      lang: 'en-US'
+      lang: 'en-US',
       // class: 'bg-black',
     },
     meta: [
@@ -26,17 +26,36 @@ export default {
       {
         hid: 'keywords',
         property: 'keywords',
-        content: site.keywords
-      }
+        content: site.keywords,
+      },
+    ],
+    __dangerouslyDisableSanitizers: ['script'],
+    script: [
+      {
+        hid: 'gtm-script1',
+        src: 'https://www.googletagmanager.com/ns.html?id=GTM-5N4C3WT',
+        defer: true,
+      },
+      {
+        hid: 'gtm-script2',
+        innerHTML: `
+          (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+          })(window,document,'script','dataLayer','GTM-5N4C3WT');
+        `,
+        type: 'text/javascript',
+        charset: 'utf-8',
+      },
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       {
         rel: 'stylesheet',
-        href:
-          'https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway&family=Roboto&family=Roboto+Slab&display=swap'
-      }
-    ]
+        href: 'https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway&family=Roboto&family=Roboto+Slab&display=swap',
+      },
+    ],
   },
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [],
@@ -56,10 +75,10 @@ export default {
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
     '@nuxtjs/google-analytics',
-    '@nuxtjs/gtm'
+    '@nuxtjs/gtm',
   ],
   gtm: {
-    id: 'G-8X2MMD1JDV'
+    id: 'G-8X2MMD1JDV',
   },
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
@@ -69,7 +88,7 @@ export default {
     '@nuxtjs/pwa',
     // https://go.nuxtjs.dev/content
     '@nuxt/content',
-    '@nuxtjs/sitemap'
+    '@nuxtjs/sitemap',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -78,8 +97,8 @@ export default {
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
     manifest: {
-      lang: 'en'
-    }
+      lang: 'en',
+    },
   },
 
   // Content module configuration: https://go.nuxtjs.dev/config-content
@@ -90,11 +109,11 @@ export default {
   sitemap: {
     hostname: 'https://gordonpike.com',
     gzip: true,
-    exclude: ['/secret', '/admin/**']
+    exclude: ['/secret', '/admin/**'],
   },
 
   hooks: {
-    'content:file:beforeInsert': document => {
+    'content:file:beforeInsert': (document) => {
       if (document.extension === '.md') {
         Object.entries(document).forEach(([key, value]) => {
           const _key = `case_insensitive__${key}`
@@ -106,7 +125,7 @@ export default {
 
           // Arrays
           if (!document[_key] && Array.isArray(value)) {
-            document[_key] = value.map(val => {
+            document[_key] = value.map((val) => {
               if (typeof val === 'string') {
                 return val.toLocaleLowerCase()
               }
@@ -115,6 +134,6 @@ export default {
           }
         })
       }
-    }
-  }
+    },
+  },
 }
