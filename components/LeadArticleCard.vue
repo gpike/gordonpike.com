@@ -35,11 +35,29 @@
           <p class="mt-2 text-gray-600">{{ article.description }}</p>
         </div>
         <div class="flex justify-between items-center mt-4">
-          <a
-            :href="blogPath(article.slug)"
-            class="text-tertiary hover:underline"
-            >Read more</a
-          >
+          <div class="rounded-md shadow">
+            <a
+              :href="blogPath(article.slug)"
+              class="
+                w-full
+                flex
+                items-center
+                justify-center
+                px-6
+                py-2
+                border border-transparent
+                text-base
+                font-medium
+                rounded-md
+                text-white
+                bg-primary
+                hover:bg-secondary
+                md:py-3 md:text-lg md:px-8
+              "
+            >
+              Read More
+            </a>
+          </div>
           <div>
             <a href="#" class="flex items-center"
               ><img

@@ -15,7 +15,7 @@
     "lintfix": "prettier --write --list-different . && yarn lint:js --fix && yarn lint:style --fix",
     "prepare": "husky install",
     "test": "jest",
-    "deploy": "rsync -av  ./dist/ agileike@agilepike.com:~/gordonpike.com --delete"
+    "deploy": "rsync -av ./dist/ agileike@agilepike.com:~/gordonpike.com --delete --exclude=/comments"
   },
   "lint-staged": {
     "*.{js,ts,vue}": "eslint --cache",

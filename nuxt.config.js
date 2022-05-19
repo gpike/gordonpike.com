@@ -48,6 +48,11 @@ export default {
         type: 'text/javascript',
         charset: 'utf-8',
       },
+      {
+        hid: 'google-adsense',
+        src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6802417804193475',
+        crossorigin: 'anonymous',
+      },
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
