@@ -1,64 +1,113 @@
 <template>
   <div class="mt-6">
-      <div class="bg-cardback rounded-lg shadow-md">
-          <img class="width-full rounded-tl-lg rounded-tr-lg" :src="article.cover_image" />
-          <div class="px-10 py-6">
-            <div class="flex justify-between items-center">
-                <span class="font-light text-gray-600">{{ formatDate(article.date) }}</span>
-                <a v-for="tag in article.tags" :key="tag" :href="categoryPath(tag)"
-                    class="px-2 py-1 bg-quinary text-gray-100 font-bold rounded hover:bg-quaternary">{{ tag }}</a>
-            </div>
-            <div class="mt-2"><a :href="blogPath(article.slug)" class="text-2xl text-gray-700 font-bold hover:underline">{{ article.title }}</a>
-                <p class="mt-2 text-gray-600">{{ article.description }}</p>
-            </div>
-            <div class="flex justify-between items-center mt-4"><a :href="blogPath(article.slug)"
-                    class="text-tertiary hover:underline">Read more</a>
-                <div><a href="#" class="flex items-center"><img
-                            :src="article.author_image"
-                            alt="avatar" class="mx-4 w-10 h-10 object-cover rounded-full hidden sm:block">
-                        <h1 class="text-gray-700 font-bold hover:underline">{{ article.author }}</h1>
-                    </a></div>
-            </div>
+    <div class="bg-cardback rounded-lg shadow-md">
+      <img
+        class="width-full rounded-tl-lg rounded-tr-lg"
+        :src="article.cover_image"
+      />
+      <div class="px-10 py-6">
+        <div class="flex justify-between items-center">
+          <span class="font-light text-gray-600">{{
+            formatDate(article.date)
+          }}</span>
+          <a
+            v-for="tag in article.tags"
+            :key="tag"
+            :href="categoryPath(tag)"
+            class="
+              px-2
+              py-1
+              bg-quinary
+              text-gray-100
+              font-bold
+              rounded
+              hover:bg-quaternary
+            "
+            >{{ tag }}</a
+          >
+        </div>
+        <div class="mt-2">
+          <a
+            :href="blogPath(article.slug)"
+            class="text-2xl text-gray-700 font-bold hover:underline"
+            >{{ article.title }}</a
+          >
+          <p class="mt-2 text-gray-600">{{ article.description }}</p>
+        </div>
+        <div class="flex justify-between items-center mt-4">
+          <div class="rounded-md shadow">
+            <a
+              :href="blogPath(article.slug)"
+              class="
+                w-full
+                flex
+                items-center
+                justify-center
+                px-6
+                py-2
+                border border-transparent
+                text-base
+                font-medium
+                rounded-md
+                text-white
+                bg-primary
+                hover:bg-secondary
+                md:py-3 md:text-lg md:px-8
+              "
+            >
+              Read More
+            </a>
           </div>
+          <div>
+            <a href="#" class="flex items-center"
+              ><img
+                :src="article.author_image"
+                alt="avatar"
+                class="mx-4 w-10 h-10 object-cover rounded-full hidden sm:block"
+              />
+              <h1 class="text-gray-700 font-bold hover:underline">
+                {{ article.author }}
+              </h1>
+            </a>
+          </div>
+        </div>
       </div>
+    </div>
   </div>
 </template>
 
 <script>
-  import { DateTime } from 'luxon'
-
-  export default {
-    props: {
-      article: {
-        type: Object,
-        default: () => {
-          return {
-            title: ''
-          }
+export default {
+  props: {
+    article: {
+      type: Object,
+      default: () => {
+        return {
+          title: '',
         }
-      }
+      },
     },
-    methods: {
-      formatDate: (date) => {
-        const options = { year: 'numeric', month: 'long', day: 'numeric' }
-        return new Date(date).toLocaleDateString('en', options)
-      },
+  },
+  methods: {
+    formatDate: (date) => {
+      const options = { year: 'numeric', month: 'long', day: 'numeric' }
+      return new Date(date).toLocaleDateString('en', options)
+    },
 
-      blogPath: (blogName) => {
-        return `/blog/${blogName}`
-      },
+    blogPath: (blogName) => {
+      return `/blog/${blogName}`
+    },
 
-      categoryPath: (category) => {
-        const cat = category.replace(/ /g, '_');
-        return `/category/${cat}`
-      }
-    }
-
-  }
+    categoryPath: (category) => {
+      const cat = category.replace(/ /g, '_')
+      return `/category/${cat}`
+    },
+  },
+}
 </script>
 
 <style lang="scss" scoped>
-  .dummy {
-    display: block;
-  }
+.dummy {
+  display: block;
+}
 </style>
