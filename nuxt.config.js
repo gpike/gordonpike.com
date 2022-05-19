@@ -2,6 +2,23 @@ import common from './utils/common'
 
 const site = common.readYaml('./content', 'siteconfig.yml')
 
+const allRoutes = []
+
+const getRoutes = async function () {
+  const { $content } = require('@nuxt/content')
+  if (allRoutes.length > 1) {
+    return allRoutes
+  }
+
+  const articles = await $content('articles').fetch()
+
+  // Write route for each article
+  articles.forEach((article) => {
+    allRoutes.push(`/blog/${article.slug}`)
+  })
+  return allRoutes
+}
+
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
@@ -115,6 +132,11 @@ export default {
     hostname: 'https://gordonpike.com',
     gzip: true,
     exclude: ['/secret', '/admin/**'],
+    async routes() {
+      const genRoutes = await getRoutes()
+      console.info('********** Sitemap routes:', genRoutes)
+      return genRoutes
+    },
   },
 
   hooks: {
