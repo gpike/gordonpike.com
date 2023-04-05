@@ -2,7 +2,9 @@
 title: What Tech Leaders Need To Know About Progressive Web Apps
 date: 2019-07-02
 published: true
-tags: ['PWA', 'Web Front End']
+tags:
+  - PWA
+  - Web Front End
 series: false
 cover_image: /images/articles/what_tech_leaders_need_to_know_about_progressive_we_apps/race2.jpeg
 cover_caption: 'Hello'
@@ -18,8 +20,8 @@ og_url: url
 og_description: This is the great index page
 og_image: ''
 keywords:
-  - blog
-  - engine
+  - PWA
+  - Web Front End
 ---
 
 It was cold and wet. Wind gusts drove biting rain into the cheeks of determined spectators. These were not the conditions in which to do the impossible. Some doctors and scientist believed it was beyond a humans physical ability. Experts speculated it could only be achieved under perfect conditions. “Runners, take your mark”, by the time he put his feet in the blocks the wind was blowing at 15 mph. “Get set”, he had spent the morning working at the hospital where he was a med student. In fact his schedule didn’t allow him to prepare like an elite athlete, he only devoted thirty minutes a day to running. When the starter's gun rang out, he was determined to do the unthinkable, he had a vision of the possible. On May 6, 1954 at Iffley Road Track in Oxford England, Roger Bannister became the first person to run a mile in under 4 minutes, He redefined the boundaries of the possible and paved the way for over 1600 sub 4 minute miles since.

@@ -1,96 +1,94 @@
 <template>
-  <section
-    class="
-      container
-      grid grid-cols-1
-      md:grid-cols-6
-      lg:grid-cols-8
-      md:gap-2
-      lg:gap-4
-    "
-  >
-    <lead-article-card class="col-span-full" :article="featured" />
-    <article-card
-      v-for="article in articles"
-      :key="article.name"
-      class="col-span-full md:col-span-3 lg:col-span-4"
-      :article="article"
-    >
-    </article-card>
-  </section>
+  <NuxtLayout name="default">
+    <section class="flex flex-row flex-wrap lg:flex-nowrap">
+      <div
+        class="grow grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:gap-2 lg:gap-4 m-8"
+      >
+        <article-card class="col-span-full" featured="true" v-bind="featured">
+        </article-card>
+        <article-card
+          v-for="article in articles"
+          :key="article.name"
+          v-bind="article"
+        >
+        </article-card>
+      </div>
+      <signup-card class="flex-none"></signup-card>
+    </section>
+  </NuxtLayout>
 </template>
 
-<script lang="ts">
-import Vue from 'vue'
-import ArticleCard from '~/components/ArticleCard.vue'
-import LeadArticleCard from '~/components/LeadArticleCard.vue'
+<script setup lang="ts">
+import { ParsedContent } from '@nuxt/content/dist/runtime/types'
 
-export default Vue.extend({
-  name: 'BlogHomePage',
-  components: {
-    ArticleCard,
-    LeadArticleCard,
-  },
-  layout: 'BlogPage',
-  async asyncData({ $content }) {
-    const pageConfig = await $content('blog/index').fetch()
-    const articleRecords = await $content('articles')
-      .sortBy('date', 'desc')
-      .fetch()
-    const articles = articleRecords.slice()
+interface PageConf extends ParsedContent {
+  title: string
+  description: string
+  ogTitle: string
+  ogDescription: string
+  ogImage: string
+  keywords: string[]
+}
 
-    return {
-      pageConfig,
-      featured: articles.shift(),
-      articles,
-    }
+const { data: pageConfig } = await useAsyncData('pageConfig', () =>
+  queryContent<PageConf>('blog/index').findOne()
+)
+
+const title = pageConfig.value ? pageConfig.value.title : ''
+const description = pageConfig.value ? pageConfig.value.description : ''
+const ogTitle = pageConfig.value ? pageConfig.value.og_title : ''
+const ogDescription = pageConfig.value ? pageConfig.value.og_description : ''
+const ogImage = pageConfig.value ? pageConfig.value.og_image : ''
+const keywords = pageConfig.value ? pageConfig.value.keywords : ''
+
+const { data: articleRecords } = await useAsyncData('articleRecords', () =>
+  queryContent('articles').sort({ date: 1, desc: 1 }).find()
+)
+const articles =
+  articleRecords && articleRecords.value ? articleRecords.value.slice() : []
+const featured = articles.shift()
+
+const { fullPath: absUrl } = useRoute()
+
+useHead({
+  bodyAttrs: {
+    class: 'leading-normal tracking-normal text-white gradient',
+    style: 'font-family: "Source Sans Pro", sans-serif;',
   },
-  data() {
-    return {
-      absUrl: '',
-    }
-  },
-  head() {
-    return {
-      title: (this as any).pageConfig.title,
-      meta: [
-        {
-          hid: 'description',
-          property: 'description',
-          content: (this as any).pageConfig.description,
-        },
-        {
-          hid: 'og:title',
-          property: 'og:title',
-          content: (this as any).pageConfig.og_title,
-        },
-        {
-          hid: 'og:description',
-          property: 'og:description',
-          content: (this as any).pageConfig.og_description,
-        },
-        {
-          hid: 'og:image',
-          property: 'og:image',
-          content: (this as any).pageConfig.og_image,
-        },
-        {
-          hid: 'keywords',
-          property: 'keywords',
-          content: (this as any).pageConfig.keywords,
-        },
-      ],
-      link: [
-        {
-          hid: 'canonical',
-          rel: 'canonical',
-          href: (this as any).absUrl,
-        },
-      ],
-    }
-  },
-  beforeMount() {
-    ;(this as any).absUrl = `${window.location.origin}${this.$route.fullPath}`
-  },
+  title,
+  meta: [
+    {
+      hid: 'description',
+      property: 'description',
+      content: description,
+    },
+    {
+      hid: 'og:title',
+      property: 'og:title',
+      content: ogTitle,
+    },
+    {
+      hid: 'og:description',
+      property: 'og:description',
+      content: ogDescription,
+    },
+    {
+      hid: 'og:image',
+      property: 'og:image',
+      content: ogImage,
+    },
+    {
+      hid: 'keywords',
+      property: 'keywords',
+      content: keywords,
+    },
+  ],
+  link: [
+    {
+      hid: 'canonical',
+      rel: 'canonical',
+      href: absUrl,
+    },
+  ],
 })
 </script>

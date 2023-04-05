@@ -1,22 +1,12 @@
 <template>
-  <section class="container mx-auto bg-white">
-    <nuxt-content
-      class="
-        col-span-full
-        article-body
-        px-8
-        font-body font-thin
-        text-lg
-        leading-loose
-        prose prose-sm
-        sm:prose
-        lg:prose-lg
-        xl:prose-2xl
-        mx-auto
-      "
-      :document="about"
-    />
-  </section>
+  <NuxtLayout name="default">
+    <section class="container mx-auto bg-white">
+      <nuxt-content
+        class="col-span-full article-body px-8 font-body font-thin text-lg leading-loose prose prose-sm sm:prose lg:prose-lg xl:prose-2xl mx-auto"
+        :document="about"
+      />
+    </section>
+  </NuxtLayout>
 </template>
 
 <script>

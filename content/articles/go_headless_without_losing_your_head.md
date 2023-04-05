@@ -2,7 +2,9 @@
 title: Go Headless Without Losing Your Head
 date: 2019-06-23
 published: true
-tags: ['AEM', 'Adobe Experience Manager']
+tags:
+  - AEM
+  - Adobe Experience Manager
 series: false
 cover_image: /images/articles/mika-748558-unsplash.jpg
 cover_caption: Photo by Mika on Unsplash
@@ -18,8 +20,8 @@ og_url: url
 og_description: This is the great index page
 og_image: ''
 keywords:
-  - blog
-  - engine
+  - AEM
+  - Adobe Experience Manager
 ---
 
 <figcaption>Photo by Mika on Unsplash</figcaption>
