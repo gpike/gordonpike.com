@@ -10,7 +10,7 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'https://gordonpike.com',
+      siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'https://www.gordonpike.com',
       siteName: 'Gordon Pike',
       siteDescription: 'The personal website of Gordon Pike.',
       language: 'en', // prefer more explicit language codes like `en-AU` over `en`
@@ -30,6 +30,9 @@ export default defineNuxtConfig({
   },
   app: {
     cdnURL: '/',
+    htmlAttrs: {
+      lang: 'en',
+    },
     head: {
       script: [
         {

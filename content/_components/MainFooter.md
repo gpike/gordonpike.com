@@ -27,6 +27,8 @@ external_links:
     link: https://www.agilepike.com
   - name: Betta Guru
     link: https://www.bettaguru.com
+  - name: AI Gently
+    link: https://www.aigently.com
 social:
   twitter: https://twitter.com/gpike
   facebook: https://www.facebook.com/gopike
