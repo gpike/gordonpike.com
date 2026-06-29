@@ -2,26 +2,35 @@
 title: What Tech Leaders Need To Know About Progressive Web Apps
 date: 2019-07-02
 published: true
-tags: ['PWA', 'Web Front End']
+tags:
+  - PWA
+  - Web Front End
 series: false
 cover_image: /images/articles/what_tech_leaders_need_to_know_about_progressive_we_apps/race2.jpeg
 cover_caption: 'Hello'
-canonical_url: false
 author: Gordon Pike
 author_image: /images/authors/GordonPike.jpg
 description: "It was cold and wet. Wind gusts drove biting rain into the cheeks of determined spectators. These were not the conditions in which to do the impossible. Some doctors and scientist believed it was beyond a humans physical ability. Experts speculated it could only be achieved under perfect conditions. “Runners, take your mark”, by the time he put his feet in the blocks the wind was blowing at 15 mph. “Get set”, he had spent the morning working at the hospital where he was a med student. In fact his schedule didn’t allow him to prepare like an elite athlete, he only devoted thirty minutes a day to running. When the starter's gun rang out, he was determined to do the unthinkable, he had a vision of the possible. On May 6, 1954 at Iffley Road Track in Oxford England, Roger Bannister became the first person to run a mile in under 4 minutes, He redefined the boundaries of the possible and paved the way for over 1600 sub 4 minute miles since."
+is_canonical: true
+canonical_url: ''
+meta_description: This is the great index page
+og_title: Gordon Pike About Page
+og_type: page
+og_url: url
+og_description: This is the great index page
+og_image: ''
+keywords:
+  - PWA
+  - Web Front End
 ---
 
 It was cold and wet. Wind gusts drove biting rain into the cheeks of determined spectators. These were not the conditions in which to do the impossible. Some doctors and scientist believed it was beyond a humans physical ability. Experts speculated it could only be achieved under perfect conditions. “Runners, take your mark”, by the time he put his feet in the blocks the wind was blowing at 15 mph. “Get set”, he had spent the morning working at the hospital where he was a med student. In fact his schedule didn’t allow him to prepare like an elite athlete, he only devoted thirty minutes a day to running. When the starter's gun rang out, he was determined to do the unthinkable, he had a vision of the possible. On May 6, 1954 at Iffley Road Track in Oxford England, Roger Bannister became the first person to run a mile in under 4 minutes, He redefined the boundaries of the possible and paved the way for over 1600 sub 4 minute miles since.
-
 
 > He redefined the boundaries of the possible
 
 Today’s conditions are no better. True there is a rise in mobile devices but 65% of mobile users download 0 apps, 80% of apps that are downloaded, are uninstalled within a week and 25% are deleted after only one use. Given the investment, does it make sense to build something only 1 out of 10 people are going to use after one week?
 
-
 Despite the conditions determined companies are seeing an increase of revenue via mobile devices; Best Western River North 300%, Mobify 20%, Lancome 16%, and West Elm 9%. Others are seeing increases in recovered shopping carts; Lancome 8% and Jumia 9 times more conversions on abandoned carts. Customer engagements are up too; Pinterest 60% increase, Forbes 2 times increase in session length, Lancome 53%, MakeMyTrip 160%, Twitter 25% and Trivago 150% more repeat visits. All this while being able to decrease development and maintenance costs by as much as 33%. Is this unthinkable or is it the new possible?
-
 
 Progressive Web Apps (PWA) are pushing the boundaries of what’s possible. It is the secret weapon many companies are using to increase revenue, increase engagement and reduce costs.
 
@@ -29,7 +38,7 @@ Progressive Web Apps (PWA) are pushing the boundaries of what’s possible. It i
 
 ![Hybrid Mobile App Lineup](/images/articles/what_tech_leaders_need_to_know_about_progressive_we_apps/Magoo%20Lineup%203.png)
 
-> __*Even Mr. Magoo could pick a hybrid out of a lineup.*__
+> **_Even Mr. Magoo could pick a hybrid out of a lineup._**
 
 Hybrid mobile apps tried to bridge the gap between mobile devices and web developers. With frameworks like Phonegap and Cordova web developers could package web applications in a native skeleton and submit them to the App stores. This worked for simple applications but the apps didn’t look, feel and perform like their native counterparts. it was easy for most users to tell the difference, even Mr. Magoo could pick a hybrid out of a lineup. This fed a stigma that anything other than a native app was a was complete waste of time.
 
@@ -45,16 +54,13 @@ PWAs are peeling back the stigma for non native mobile apps. The results are tur
 
 A PWA is a single page web application (SPA) built using html, css and Javascript. A SPA is a PWA if it adheres to a set of best practices. The criteria insures it is fast, reliable and engaging when run on a broad number of mobile devices. These are goals an app should have anyway. There are 2 levels of compliance, Basic PWA and Exemplary PWA.
 
-> __*The criteria insures it is fast, reliable and engaging when run on a broad number of mobile devices.*__
->
+> **_The criteria insures it is fast, reliable and engaging when run on a broad number of mobile devices._**
 
 ![Baseline PWA](/images/articles/what_tech_leaders_need_to_know_about_progressive_we_apps/BaselinePWA.png)
-
 
 At the core a PWA takes advantage of service workers and a Web App Manifest. Service workers provide local resource caching and push notifications. A local cache helps the app to continue to work, even with intermittent connectivity and helps the app to be fast. Most people will abandon a site after a 3 second page load. PWAs are obsessed with first screen paint and first meaningful screen paint. Painting a page skeleton first and then filling in with higher fidelity images. This gives the user the perception of speed. When offline the app still needs to be available, it can pull from cache or store data until the connectivity is back online. A Web App Manifest linked in the index.html informs browsers of resources the app needs, app name, icon and splash screen. Using this, a mobile browser can help the OS treat the app like a native app. It can be full screen (no browser header), have a splash screen on loading and an icon that can be displayed on the home screen. The criteria for a baseline PWA are shown in the above diagram.
 
 ![PWA Features](/images/articles/what_tech_leaders_need_to_know_about_progressive_we_apps/PWAFeatures.png)
-
 
 A PWA can be considered exemplary if it satisfies the baseline criteria and exemplifies the criteria above. The app exhibits the additional traits in indexability, user experience, performance and push notifications. Optionally it can include support additional functionality like implementing credential management and payment apis. A PWA doesn’t have to meet all of the criteria but authors should strive for complete compliance.
 

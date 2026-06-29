@@ -1,18 +1,32 @@
 <template>
-  <div class="bg-background grid grid-cols-1 gap-2">
-    <heading class="col-span-full"></heading>
-      <nuxt/>
-    <footer class="col-span-full"></footer>
-  </div>
+  <ContentRenderer :value="data">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-NSN3GXB"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe
+    ></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <div class="bg-background">
+      <main-header></main-header>
+      <slot></slot>
+      <main-footer></main-footer>
+    </div>
+  </ContentRenderer>
 </template>
 
-<script>
-  import Heading from '~/components/Heading.vue'
-  import Footer from '~/components/Footer.vue'
-  export default {
-    components: {
-      Heading,
-      Footer
-    }
-  }
+<script setup lang="ts">
+const { data } = await useAsyncData('page-data', () =>
+  queryContent('/').findOne()
+)
+
+useHead({
+  bodyAttrs: {
+    class: 'leading-normal tracking-normal text-white gradient',
+    style: 'font-family: "Source Sans Pro", sans-serif;',
+  },
+})
 </script>
