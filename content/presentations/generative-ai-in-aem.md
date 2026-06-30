@@ -1,11 +1,18 @@
 ---
 title: 'Generative AI in AEM: Enhancing Your Content Ecosystem, Part 1'
-date: '2023-11-15'
+date: 2023-11-15
 event: 'Evolve with 3|SHARE'
 location: 'Virtual'
+duration: '50 mins'
 tags: ['AEM', 'Generative AI', 'Adobe', 'Content Management', 'Innovation']
-coverImage: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
-videoUrl: 'https://youtu.be/ZrOwXuJDDsM'
+cover_image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+slides_url: ''
+video_url: 'https://youtu.be/ZrOwXuJDDsM'
+description: 'How generative AI can improve AEM content creation, metadata enrichment, personalization, and operational efficiency.'
+takeaways:
+	- Start AI in AEM with focused pilot use cases and measurable outcomes.
+	- Keep human review loops to maintain quality, trust, and compliance.
+	- Integrate AI services through secure, scalable architecture patterns.
 ---
 
 # Generative AI in AEM: Enhancing Your Content Ecosystem, Part 1

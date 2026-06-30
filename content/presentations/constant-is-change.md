@@ -1,11 +1,18 @@
 ---
 title: 'The Only Thing Constant Is Change'
-date: '2015-08-19'
+date: 2015-08-19
 event: "EVOLVE'15 | Keynote"
 location: 'Hard Rock Hotel, San Diego, CA'
+duration: '45 mins'
 tags: ['Mobile', 'IoT', 'Wearables', 'AEM', 'Adobe']
-coverImage: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
-slidesUrl: 'https://www.slideshare.net/slideshow/evolve15-keynote-gordon-pike-the-thing-constant-is-change/52182527'
+cover_image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+slides_url: 'https://www.slideshare.net/slideshow/evolve15-keynote-gordon-pike-the-thing-constant-is-change/52182527'
+video_url: ''
+description: 'Keynote exploring mobile dominance, wearables, and IoT trends shaping enterprise digital strategy.'
+takeaways:
+  - Build experiences mobile-first to maximize global reach and engagement.
+  - Use hybrid-first and JavaScript-first tooling to accelerate multi-platform delivery.
+  - Combine AEM with PhoneGap Enterprise for scalable authoring and OTA updates.
 ---
 
 # The Thing Constant Is Change: Three Tech Trends That Will Shape Our Future

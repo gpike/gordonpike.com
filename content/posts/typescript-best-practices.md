@@ -1,9 +1,12 @@
 ---
 title: 'TypeScript Best Practices for 2023'
-date: '2023-07-22'
+published_at: 2023-07-22
+published: true
 excerpt: 'Discover the most effective TypeScript practices to write more maintainable, type-safe, and scalable code in your projects.'
-coverImage: '/images/articles/blake-lisk-228692-unsplash.jpg'
+cover_image: /images/articles/blake-lisk-228692-unsplash.jpg
 tags: ['TypeScript', 'JavaScript', 'Web Development', 'Best Practices']
+author: Gordon Pike
+author_image: /images/authors/GordonPike.jpg
 ---
 
 # TypeScript Best Practices for 2023

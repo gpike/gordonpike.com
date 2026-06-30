@@ -1,11 +1,18 @@
 ---
 title: 'Rev Up Your Marketing Engine'
-date: '2016-09-09'
+date: 2016-09-09
 event: "EVOLVE'16 | Enhance"
 location: 'Virtual'
+duration: '40 mins'
 tags: ['AEM', 'Analytics', 'Marketing', 'Performance', 'ELK Stack']
-coverImage: 'https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
-slidesUrl: 'https://www.slideshare.net/slideshow/evolve16-enhance-gordon-pike-rev-up-your-marketing-engine/65872324'
+cover_image: 'https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+slides_url: 'https://www.slideshare.net/slideshow/evolve16-enhance-gordon-pike-rev-up-your-marketing-engine/65872324'
+video_url: ''
+description: 'Session on building ELK-powered AEM dashboards to monitor site health and drive marketing performance decisions.'
+takeaways:
+   - Build log data pipelines that support measurable, actionable KPIs.
+   - Use ELK architecture to move from reactive troubleshooting to proactive operations.
+   - Align analytics strategy with business outcomes, not vanity metrics.
 ---
 
 # Rev Up Your Marketing Engine

@@ -1,229 +1,151 @@
-'use client'
+import React from 'react';
+import { Github, Linkedin, Twitter, Terminal } from 'lucide-react';
+import { View } from '../types';
+import NewsletterSignup from './NewsletterSignup';
 
-import { useState } from 'react'
-import Link from 'next/link'
-import Image from 'next/image'
-import { Github, Linkedin, Twitter, Mail, Globe, Send } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+interface FooterProps {
+  onNavigate: (view: View, itemId?: string) => void;
+}
 
-export function Footer() {
-  const [email, setEmail] = useState('')
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitStatus, setSubmitStatus] = useState<
-    'idle' | 'success' | 'error'
-  >('idle')
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value)
-  }
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-
-    try {
-      const response = await fetch('/api/newsletter', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email }),
-      })
-
-      if (response.ok) {
-        setSubmitStatus('success')
-        setEmail('')
-      } else {
-        setSubmitStatus('error')
-      }
-    } catch (error) {
-      console.error('Newsletter subscription error:', error)
-      setSubmitStatus('error')
-    } finally {
-      setIsSubmitting(false)
-
-      // Reset success message after 5 seconds
-      if (submitStatus === 'success') {
-        setTimeout(() => {
-          setSubmitStatus('idle')
-        }, 5000)
-      }
-    }
-  }
+export default function Footer({ onNavigate }: FooterProps) {
 
   return (
-    <footer className='relative mt-auto border-t bg-gradient-to-b from-background to-primary/5'>
-      <div className='absolute inset-0 bg-grid-white/10 [mask-image:linear-gradient(0deg,transparent,white)]' />
-      <div className='relative z-10 container mx-auto px-4 py-12'>
-        <div className='grid gap-8 md:grid-cols-2 lg:grid-cols-4'>
-          <div>
-            <Link href='/' className='inline-block'>
-              <Image
-                src='/images/gplogo.svg'
-                alt='GordonPike Logo'
-                width={40}
-                height={40}
-                className='text-primary'
-              />
-            </Link>
-            <p className='mt-4 text-sm text-muted-foreground'>
-              Exploring the intersection of technology, design, and innovation.
+    <footer className="border-t border-slate-200 bg-slate-50 dark:border-slate-800 dark:bg-slate-950 transition-colors" id="footer-main">
+      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+        <div className="xl:grid xl:grid-cols-3 xl:gap-8">
+          {/* Bio & Brand Info */}
+          <div className="space-y-6 xl:col-span-1" id="footer-bio-section">
+            <div className="flex items-center space-x-2.5">
+              <div className="flex h-8 w-8 items-center justify-center rounded bg-slate-900 text-white dark:bg-slate-800">
+                <Terminal className="h-4 w-4 text-indigo-400" />
+              </div>
+              <span className="font-sans text-lg font-bold tracking-tight text-slate-900 dark:text-slate-50">
+                GordonPike<span className="text-indigo-600 dark:text-indigo-400">.</span>
+              </span>
+            </div>
+            <p className="max-w-md text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+              Senior Architect exploring decoupled systems, intelligent agentic workflows, future-proof CMS topologies, and modern web application development.
             </p>
-          </div>
-
-          <div>
-            <h3 className='mb-4 text-lg font-semibold'>Navigation</h3>
-            <ul className='space-y-2'>
-              <li>
-                <Link
-                  href='/'
-                  className='text-sm text-muted-foreground hover:text-primary'
-                >
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href='/about'
-                  className='text-sm text-muted-foreground hover:text-primary'
-                >
-                  About
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href='/blog'
-                  className='text-sm text-muted-foreground hover:text-primary'
-                >
-                  Blog
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href='/presentations'
-                  className='text-sm text-muted-foreground hover:text-primary'
-                >
-                  Presentations
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className='mb-4 text-lg font-semibold'>Connect</h3>
-            <div className='flex space-x-4'>
-              <Button
-                variant='ghost'
-                size='icon'
-                asChild
-                className='text-muted-foreground hover:text-primary hover:bg-primary/10'
+            <div className="flex space-x-4" id="footer-social-icons">
+              <a
+                href="https://github.com/gpike"
+                target="_blank"
+                rel="noreferrer"
+                className="rounded-full bg-slate-200 p-2 text-slate-600 hover:bg-indigo-50 hover:text-indigo-600 dark:bg-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-indigo-400 transition-all"
+                id="social-github-link"
               >
-                <Link
-                  href='https://twitter.com/agilepike'
-                  target='_blank'
-                  rel='noopener noreferrer'
-                >
-                  <Twitter className='h-5 w-5' />
-                  <span className='sr-only'>Twitter</span>
-                </Link>
-              </Button>
-              <Button
-                variant='ghost'
-                size='icon'
-                asChild
-                className='text-muted-foreground hover:text-primary hover:bg-primary/10'
+                <Github className="h-4.5 w-4.5" />
+              </a>
+              <a
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noreferrer"
+                className="rounded-full bg-slate-200 p-2 text-slate-600 hover:bg-indigo-50 hover:text-indigo-600 dark:bg-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-indigo-400 transition-all"
+                id="social-linkedin-link"
               >
-                <Link
-                  href='https://linkedin.com/in/gordonpike'
-                  target='_blank'
-                  rel='noopener noreferrer'
-                >
-                  <Linkedin className='h-5 w-5' />
-                  <span className='sr-only'>LinkedIn</span>
-                </Link>
-              </Button>
-              <Button
-                variant='ghost'
-                size='icon'
-                asChild
-                className='text-muted-foreground hover:text-primary hover:bg-primary/10'
+                <Linkedin className="h-4.5 w-4.5" />
+              </a>
+              <a
+                href="https://twitter.com"
+                target="_blank"
+                rel="noreferrer"
+                className="rounded-full bg-slate-200 p-2 text-slate-600 hover:bg-indigo-50 hover:text-indigo-600 dark:bg-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-indigo-400 transition-all"
+                id="social-twitter-link"
               >
-                <Link
-                  href='https://github.com/agilepike'
-                  target='_blank'
-                  rel='noopener noreferrer'
-                >
-                  <Github className='h-5 w-5' />
-                  <span className='sr-only'>GitHub</span>
-                </Link>
-              </Button>
-              <Button
-                variant='ghost'
-                size='icon'
-                asChild
-                className='text-muted-foreground hover:text-primary hover:bg-primary/10'
-              >
-                <Link href='mailto:gordon@agilepike.com'>
-                  <Mail className='h-5 w-5' />
-                  <span className='sr-only'>Email</span>
-                </Link>
-              </Button>
+                <Twitter className="h-4.5 w-4.5" />
+              </a>
             </div>
           </div>
 
-          <div>
-            <h3 className='mb-4 text-lg font-semibold'>Newsletter</h3>
-            <p className='mb-4 text-sm text-muted-foreground'>
-              Subscribe to my newsletter for updates and insights.
-            </p>
-            <form onSubmit={handleSubmit} className='space-y-3'>
+          {/* Navigation and Resources Grid */}
+          <div className="mt-12 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0" id="footer-links-section">
+            <div className="md:grid md:grid-cols-2 md:gap-8">
               <div>
-                <input
-                  type='email'
-                  id='email'
-                  name='email'
-                  value={email}
-                  onChange={handleChange}
-                  required
-                  className='w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2'
-                  placeholder='your.email@example.com'
-                />
+                <h3 className="text-xs font-bold tracking-wider text-slate-900 dark:text-slate-100 uppercase">
+                  Navigation
+                </h3>
+                <ul className="mt-4 space-y-2.5">
+                  <li>
+                    <button
+                      onClick={() => onNavigate('home')}
+                      className="text-sm text-slate-600 hover:text-indigo-600 dark:text-slate-400 dark:hover:text-indigo-400 transition-colors"
+                      id="footer-nav-home"
+                    >
+                      Home
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      onClick={() => onNavigate('blog')}
+                      className="text-sm text-slate-600 hover:text-indigo-600 dark:text-slate-400 dark:hover:text-indigo-400 transition-colors"
+                      id="footer-nav-blog"
+                    >
+                      Blog Articles
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      onClick={() => onNavigate('presentations')}
+                      className="text-sm text-slate-600 hover:text-indigo-600 dark:text-slate-400 dark:hover:text-indigo-400 transition-colors"
+                      id="footer-nav-presentations"
+                    >
+                      Presentations
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      onClick={() => onNavigate('about')}
+                      className="text-sm text-slate-600 hover:text-indigo-600 dark:text-slate-400 dark:hover:text-indigo-400 transition-colors"
+                      id="footer-nav-about"
+                    >
+                      About Gordon
+                    </button>
+                  </li>
+                </ul>
               </div>
-              <Button
-                type='submit'
-                disabled={isSubmitting}
-                className='w-full border-primary/20 hover:bg-primary/10'
-              >
-                {isSubmitting ? (
-                  <>
-                    <span className='mr-2 h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent'></span>
-                    Subscribing...
-                  </>
-                ) : (
-                  <>
-                    <Send className='mr-2 h-4 w-4' />
-                    Subscribe
-                  </>
-                )}
-              </Button>
-              {submitStatus === 'success' && (
-                <p className='mt-2 text-sm text-green-600'>
-                  Successfully subscribed to the newsletter!
-                </p>
-              )}
-              {submitStatus === 'error' && (
-                <p className='mt-2 text-sm text-red-600'>
-                  There was an error subscribing. Please try again.
-                </p>
-              )}
-            </form>
+              <div className="mt-10 md:mt-0">
+                <h3 className="text-xs font-bold tracking-wider text-slate-900 dark:text-slate-100 uppercase">
+                  Ecosystem Focus
+                </h3>
+                <ul className="mt-4 space-y-2.5">
+                  <li className="text-sm text-slate-500 dark:text-slate-400">
+                    Adobe Experience Manager
+                  </li>
+                  <li className="text-sm text-slate-500 dark:text-slate-400">
+                    Decoupled Frontend Architectures
+                  </li>
+                  <li className="text-sm text-slate-500 dark:text-slate-400">
+                    Agentic AI Tools & Skills
+                  </li>
+                  <li className="text-sm text-slate-500 dark:text-slate-400">
+                    Enterprise Content Sync
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Newsletter Column */}
+            <div id="footer-newsletter-column">
+              <NewsletterSignup
+                variant="compact"
+                title="The Weekly Byte"
+                description="Subscribe to receive short, punchy summaries of emergent web architectures and artificial intelligence agents directly in your inbox."
+                placeholder="Enter your email"
+                idPrefix="weekly-byte"
+              />
+            </div>
           </div>
         </div>
 
-        <div className='mt-12 border-t pt-8 text-center'>
-          <p className='text-sm text-muted-foreground'>
-            © {new Date().getFullYear()} Gordon Pike. All rights reserved.
+        <div className="mt-12 border-t border-slate-200 pt-8 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0" id="footer-bottom">
+          <p className="text-xs text-slate-500 dark:text-slate-400">
+            &copy; {new Date().getFullYear()} Gordon Pike. All rights reserved.
+          </p>
+          <p className="text-[10px] font-mono text-slate-400 dark:text-slate-600">
+            BUILT WITH HIGH-FIDELITY WEB SKILLS • PORT: 3000
           </p>
         </div>
       </div>
     </footer>
-  )
+  );
 }

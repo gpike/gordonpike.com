@@ -1,0 +1,6 @@
+{
+  "name": "GordonPike Portfolio & Blog",
+  "description": "High-fidelity, interactive developer portfolio and blog for Gordon Pike featuring articles on AI agents, PWAs, AEM architecture, and interactive presentation slides.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
