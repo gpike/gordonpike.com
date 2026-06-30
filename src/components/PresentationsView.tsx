@@ -1,13 +1,16 @@
 import { motion } from 'motion/react';
 import { Presentation, MapPin, Calendar, Clock, Sparkles, Play, ArrowRight } from 'lucide-react';
 import { Presentation as PresentationType, View } from '../types';
-import { PRESENTATIONS } from '../data';
+import { ABOUT_PROFILE, PRESENTATIONS } from '../data';
 
 interface PresentationsViewProps {
   onNavigate: (view: View, itemId?: string) => void;
 }
 
 export default function PresentationsView({ onNavigate }: PresentationsViewProps) {
+  const speakerName = ABOUT_PROFILE.name;
+  const speakerEmail = ABOUT_PROFILE.socialLinks.email || 'gopike@gmail.com';
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 space-y-12" id="presentations-view-container">
       {/* Page Header */}
@@ -105,14 +108,14 @@ export default function PresentationsView({ onNavigate }: PresentationsViewProps
       <section className="bg-slate-50 border border-slate-200 rounded-xl p-8 dark:bg-zinc-900/50 dark:border-slate-800 flex flex-col md:flex-row items-center justify-between gap-6" id="presentations-cta">
         <div className="space-y-1.5 text-center md:text-left">
           <h3 className="font-sans text-lg font-bold text-slate-900 dark:text-slate-50">
-            Want Gordon to speak at your event?
+            Want {speakerName} to speak at your event?
           </h3>
           <p className="text-xs text-slate-500 dark:text-slate-400 font-sans max-w-xl">
-            Gordon regularly shares insights on headless Adobe Experience Manager setups, decoupling topologies, and agentic LLM skills at enterprise conferences and technical summits.
+            {speakerName} regularly shares insights on headless Adobe Experience Manager setups, decoupling topologies, and agentic LLM skills at enterprise conferences and technical summits.
           </p>
         </div>
         <a
-          href="mailto:gordon@gordonpike.com"
+          href={`mailto:${speakerEmail}`}
           className="inline-flex items-center justify-center rounded-lg bg-indigo-600 px-5 py-3 text-xs font-bold tracking-wider text-white shadow-md hover:bg-indigo-500 transition-all uppercase"
           id="presentations-contact-btn"
         >

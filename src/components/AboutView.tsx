@@ -3,8 +3,9 @@ import { Github, Linkedin, Twitter, ArrowUpRight, Code, ShieldCheck, Cpu, ArrowR
 import { ABOUT_PROFILE } from '../data';
 
 export default function AboutView() {
-  const { name, image, tagline, bioParagraphs, socialLinks } = ABOUT_PROFILE;
+  const { name, image, tagline, bioParagraphs, socialLinks, skills } = ABOUT_PROFILE;
   const [para1, para2, para3] = bioParagraphs;
+  const focusGroups = [skills.slice(0, 4), skills.slice(4, 8), skills.slice(8, 12)].filter((group) => group.length > 0);
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 space-y-20" id="about-view-container">
@@ -54,56 +55,34 @@ export default function AboutView() {
           </p>
         </div>
 
-        {/* Bento Cards */}
+        {/* Focus Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6" id="bento-philosophy-grid">
-          {/* Card 1: Technical Precision */}
-          <div className="rounded-xl border border-slate-200 bg-white p-6 dark:border-slate-800 dark:bg-zinc-900 flex flex-col justify-between space-y-6 hover:shadow-md transition-shadow">
-            <div className="space-y-4">
-              <div className="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-50 text-indigo-600 dark:bg-slate-800 dark:text-indigo-400">
-                <Code className="h-5 w-5" />
+          {focusGroups.map((group, index) => (
+            <div
+              key={`focus-group-${index}`}
+              className={`rounded-xl p-6 flex flex-col justify-between space-y-6 transition-shadow hover:shadow-md ${
+                index === 1
+                  ? 'border border-slate-800 bg-slate-900 dark:bg-slate-950 relative overflow-hidden shadow-md hover:shadow-lg'
+                  : 'border border-slate-200 bg-white dark:border-slate-800 dark:bg-zinc-900'
+              }`}
+            >
+              {index === 1 && <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_top_right,rgba(99,102,241,0.1),transparent_50%)]" />}
+              <div className={`space-y-4 ${index === 1 ? 'relative z-10' : ''}`}>
+                <div className={`inline-flex h-10 w-10 items-center justify-center rounded-lg ${index === 1 ? 'bg-indigo-600 text-white shadow-md' : 'bg-indigo-50 text-indigo-600 dark:bg-slate-800 dark:text-indigo-400'}`}>
+                  {index === 0 ? <Code className="h-5 w-5" /> : index === 1 ? <Cpu className="h-5 w-5" /> : <ShieldCheck className="h-5 w-5" />}
+                </div>
+                <h3 className={`font-sans text-lg font-bold ${index === 1 ? 'text-white' : 'text-slate-900 dark:text-slate-50'}`}>
+                  {group[0]}
+                </h3>
+                <p className={`text-xs leading-relaxed font-sans ${index === 1 ? 'text-slate-300' : 'text-slate-600 dark:text-slate-400'}`}>
+                  {group.join(' • ')}
+                </p>
               </div>
-              <h3 className="font-sans text-lg font-bold text-slate-900 dark:text-slate-50">
-                Technical Precision
-              </h3>
-              <p className="text-xs leading-relaxed text-slate-600 dark:text-slate-400 font-sans">
-                I believe in writing clean, strict, and performant TypeScript. Systems should be deterministic, easily compilable, and guarded by comprehensive schemas to catch architectural drift.
-              </p>
+              <span className={`text-[10px] font-mono ${index === 1 ? 'relative z-10 text-indigo-400' : 'text-slate-400'}`}>
+                CONTENT-DRIVEN PROFILE
+              </span>
             </div>
-            <span className="text-[10px] font-mono text-slate-400">TYPE SAFETY • ZERO DRIFT</span>
-          </div>
-
-          {/* Card 2: AI & Future-Proofing (Dark Accent Card!) */}
-          <div className="rounded-xl border border-slate-800 bg-slate-900 p-6 dark:bg-slate-950 flex flex-col justify-between space-y-6 shadow-md hover:shadow-lg transition-shadow relative overflow-hidden">
-            <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_top_right,rgba(99,102,241,0.1),transparent_50%)]" />
-            <div className="relative z-10 space-y-4">
-              <div className="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-600 text-white shadow-md">
-                <Cpu className="h-5 w-5" />
-              </div>
-              <h3 className="font-sans text-lg font-bold text-white">
-                AI & Future-Proofing
-              </h3>
-              <p className="text-xs leading-relaxed text-slate-300 font-sans">
-                Large Language Models know everything but can do nothing. By designing specialized agentic skill containers, I empower AI to safely inspect codebases, execute API gateways, and assist developers securely.
-              </p>
-            </div>
-            <span className="relative z-10 text-[10px] font-mono text-indigo-400">AGENTIC SKILLS • DETERMINISTIC CHANNELS</span>
-          </div>
-
-          {/* Card 3: Global Leadership */}
-          <div className="rounded-xl border border-slate-200 bg-white p-6 dark:border-slate-800 dark:bg-zinc-900 flex flex-col justify-between space-y-6 hover:shadow-md transition-shadow">
-            <div className="space-y-4">
-              <div className="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-50 text-indigo-600 dark:bg-slate-800 dark:text-indigo-400">
-                <ShieldCheck className="h-5 w-5" />
-              </div>
-              <h3 className="font-sans text-lg font-bold text-slate-900 dark:text-slate-50">
-                Global Leadership
-              </h3>
-              <p className="text-xs leading-relaxed text-slate-600 dark:text-slate-400 font-sans">
-                Leading software teams requires empathy, clear engineering goals, and automated workflows. By removing development friction and automating deployments, I help engineering teams do their best work.
-              </p>
-            </div>
-            <span className="text-[10px] font-mono text-slate-400">EMPATHY • AUTOMATION</span>
-          </div>
+          ))}
         </div>
       </section>
 
@@ -176,7 +155,7 @@ export default function AboutView() {
               Enterprise Advisory
             </h3>
             <p className="text-xs leading-relaxed text-slate-600 dark:text-slate-400 font-sans">
-              Need feedback on decoupling your monolithic content management setups, designing bulletproof PWAs, or integrating conversational LLMs with strict code execution skills? I provide strategic consulting and workshops for engineering teams.
+              {para2 || para1 || tagline}
             </p>
           </div>
           <a
