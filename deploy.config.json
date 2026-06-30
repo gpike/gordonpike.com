@@ -1,0 +1,18 @@
+{
+  "environments": {
+    "production": {
+      "host": "agileike@agilepike.com",
+      "path": "~/gordonpike.com",
+      "description": "Production environment"
+    },
+    "staging": {
+      "host": "agileike@agilepike.com",
+      "path": "~/staging.gordonpike.com",
+      "description": "Staging environment for testing"
+    }
+  },
+  "build": {
+    "outputDir": ".output/public",
+    "command": "npm run static"
+  }
+}

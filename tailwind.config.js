@@ -1,68 +1,145 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: ['class'],
   content: [
-    './components/**/*.{js,vue,ts}',
-    './layouts/**/*.vue',
-    './pages/**/*.vue',
-    './plugins/**/*.{js,ts}',
-    './nuxt.config.{js,ts}',
-    './app.vue',
+    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
-  daisyui: {
-    themes: [
-      {
-        mytheme: {
-          primary: '#0D0D0D',
-          secondary: '#594438',
-          accent: '#BFAEA8',
-          neutral: '#BF8B5E',
-          'base-100': '#F2F2F2',
-          info: '#3ABFF8',
-          success: '#36D399',
-          warning: '#FBBD23',
-          error: '#F87272',
-        },
-      },
-    ],
-  },
   theme: {
+    container: {
+      center: true,
+      padding: '2rem',
+      screens: {
+        '2xl': '1400px',
+      },
+    },
     extend: {
       colors: {
-        primary: '#0D0D0D',
-        secondary: '#594438',
-        tertiary: '#BFAEA8',
-        alternate: '#F2F2F2',
-        highlight: '#BF8B5E',
-
-        background: '#F2F2F2',
-        cardback: '#F2F2F2',
-        cardalternate: '#594438',
-        header: '#0D0D0D',
-        footer: '#0D0D0D',
+        border: 'var(--border)',
+        input: 'var(--input)',
+        ring: 'var(--ring)',
+        background: 'var(--background)',
+        foreground: 'var(--foreground)',
+        primary: {
+          DEFAULT: 'var(--primary)',
+          foreground: 'var(--primary-foreground)',
+        },
+        secondary: {
+          DEFAULT: 'var(--secondary)',
+          foreground: 'var(--secondary-foreground)',
+        },
+        destructive: {
+          DEFAULT: 'var(--destructive)',
+          foreground: 'var(--destructive-foreground)',
+        },
+        muted: {
+          DEFAULT: 'var(--muted)',
+          foreground: 'var(--muted-foreground)',
+        },
+        accent: {
+          DEFAULT: 'var(--accent)',
+          foreground: 'var(--accent-foreground)',
+        },
+        popover: {
+          DEFAULT: 'var(--popover)',
+          foreground: 'var(--popover-foreground)',
+        },
+        card: {
+          DEFAULT: 'var(--card)',
+          foreground: 'var(--card-foreground)',
+        },
+      },
+      borderRadius: {
+        lg: 'var(--radius)',
+        md: 'calc(var(--radius) - 2px)',
+        sm: 'calc(var(--radius) - 4px)',
+      },
+      keyframes: {
+        'accordion-down': {
+          from: { height: 0 },
+          to: { height: 'var(--radix-accordion-content-height)' },
+        },
+        'accordion-up': {
+          from: { height: 'var(--radix-accordion-content-height)' },
+          to: { height: 0 },
+        },
+        float: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-10px)' },
+        },
+      },
+      animation: {
+        'accordion-down': 'accordion-down 0.2s ease-out',
+        'accordion-up': 'accordion-up 0.2s ease-out',
+        float: 'float 3s ease-in-out infinite',
+      },
+      typography: {
+        DEFAULT: {
+          css: {
+            maxWidth: '65ch',
+            color: 'var(--foreground)',
+            a: {
+              color: 'var(--primary)',
+              '&:hover': {
+                color: 'color-mix(in oklch, var(--primary), transparent 20%)',
+              },
+            },
+            '[class~="lead"]': {
+              color: 'var(--foreground)',
+            },
+            strong: {
+              color: 'var(--foreground)',
+            },
+            'ol > li::marker': {
+              color: 'var(--muted-foreground)',
+            },
+            'ul > li::marker': {
+              color: 'var(--muted-foreground)',
+            },
+            hr: {
+              borderColor: 'var(--border)',
+            },
+            blockquote: {
+              borderLeftColor: 'var(--border)',
+              color: 'var(--muted-foreground)',
+            },
+            h1: {
+              color: 'var(--foreground)',
+            },
+            h2: {
+              color: 'var(--foreground)',
+            },
+            h3: {
+              color: 'var(--foreground)',
+            },
+            h4: {
+              color: 'var(--foreground)',
+            },
+            'figure figcaption': {
+              color: 'var(--muted-foreground)',
+            },
+            code: {
+              color: 'var(--foreground)',
+            },
+            'a code': {
+              color: 'var(--foreground)',
+            },
+            pre: {
+              backgroundColor: 'var(--muted)',
+              color: 'var(--muted-foreground)',
+            },
+            thead: {
+              color: 'var(--foreground)',
+              borderBottomColor: 'var(--border)',
+            },
+            'tbody tr': {
+              borderBottomColor: 'var(--border)',
+            },
+          },
+        },
       },
     },
-    fontFamily: {
-      sans: ['Roboto', '-apple-system', 'BlinkMacSystemFont'],
-      serif: ['Georgia', 'Cambria'],
-      mono: ['SFMono-Regular', 'Menlo'],
-      display: ['"Roboto Slab"', '-apple-system', 'BlinkMacSystemFont'],
-      body: ['Poppins', '-apple-system', 'BlinkMacSystemFont'],
-      // 'display': ['Oswald'],
-      // 'body': ['Open Sans'],
-    },
   },
-  purge: {
-    // Learn more on https://tailwindcss.com/docs/controlling-file-size/#removing-unused-css
-    enabled: process.env.NODE_ENV === 'production',
-    content: [
-      './components/**/*.{js,vue,ts}',
-      './layouts/**/*.vue',
-      './pages/**/*.vue',
-      './plugins/**/*.{js,ts}',
-      './nuxt.config.{js,ts}',
-      './app.vue',
-      './content/**/*.md',
-    ],
-  },
-  plugins: [require('daisyui'), require('@tailwindcss/typography')],
+  plugins: [require('@tailwindcss/typography')],
 }
