@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ArrowLeft, Calendar, MapPin, Clock, ArrowRight, ArrowLeftSquare, ArrowRightSquare, Play, Download, ExternalLink, FileText, CheckCircle2 } from 'lucide-react';
+import { ArrowLeft, Calendar, MapPin, Clock, ArrowRight, Play, Download, ExternalLink, FileText, CheckCircle2 } from 'lucide-react';
 import { Presentation, View } from '../types';
 import { PRESENTATIONS } from '../data';
 
@@ -13,6 +13,11 @@ export default function PresentationDetailView({ presentation, onBack, onNavigat
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const [isPlayingVideo, setIsPlayingVideo] = useState(false);
   const [downloadedResName, setDownloadedResName] = useState<string | null>(null);
+  const videoResource = presentation.resources.find((resource) => resource.type === 'video');
+  const abstractParagraphs = presentation.abstract
+    .split('\n\n')
+    .map((paragraph) => paragraph.trim())
+    .filter(Boolean);
 
   const handleNextSlide = () => {
     if (currentSlideIndex < presentation.slides.length - 1) {
@@ -26,7 +31,10 @@ export default function PresentationDetailView({ presentation, onBack, onNavigat
     }
   };
 
-  const handleDownload = (resName: string) => {
+  const handleDownload = (resName: string, url: string) => {
+    if (url) {
+      window.open(url, '_blank', 'noopener,noreferrer');
+    }
     setDownloadedResName(resName);
     setTimeout(() => {
       setDownloadedResName(null);
@@ -194,12 +202,13 @@ export default function PresentationDetailView({ presentation, onBack, onNavigat
             <div className="space-y-3">
               <button
                 onClick={() => setIsPlayingVideo(true)}
+                disabled={!videoResource}
                 className="w-full flex items-center justify-between p-3 rounded-lg border border-slate-100 bg-slate-50 hover:border-indigo-500 hover:bg-indigo-50/20 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-indigo-500/30 transition-all text-xs font-medium text-slate-700 dark:text-slate-300"
                 id="watch-recording-btn"
               >
                 <div className="flex items-center space-x-2.5">
                   <Play className="h-4 w-4 text-indigo-500 fill-indigo-500" />
-                  <span>Watch Recording</span>
+                  <span>{videoResource ? 'Watch Recording' : 'Recording Unavailable'}</span>
                 </div>
                 <ExternalLink className="h-3.5 w-3.5 text-slate-400" />
               </button>
@@ -207,7 +216,7 @@ export default function PresentationDetailView({ presentation, onBack, onNavigat
               {presentation.resources.map((resource) => (
                 <button
                   key={resource.name}
-                  onClick={() => handleDownload(resource.name)}
+                  onClick={() => handleDownload(resource.name, resource.url)}
                   className="w-full flex items-center justify-between p-3 rounded-lg border border-slate-100 bg-slate-50 hover:border-indigo-500 hover:bg-indigo-50/20 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-indigo-500/30 transition-all text-xs font-medium text-slate-700 dark:text-slate-300"
                   id={`resource-${resource.type}`}
                 >
@@ -254,12 +263,11 @@ export default function PresentationDetailView({ presentation, onBack, onNavigat
             Session Abstract
           </h2>
           <div className="text-sm leading-relaxed text-slate-600 dark:text-slate-400 space-y-4 font-sans">
-            <p>
-              In this session, we investigate the core paradigms required to modernize Adobe Experience Manager deployments. As enterprise systems demand lower latencies and multi-channel content syndication, continuing with monolithic templates creates severe operational bottlenecks.
-            </p>
-            <p>
-              We cover how to migrate to decoupled environments using Content Fragments and highly optimized GraphQL API gateways. We also detail dispatch caching strategies, edge networking architectures, and secure pathways to transition safely to AEM as a Cloud Service without disrupting existing authoring operations.
-            </p>
+            {abstractParagraphs.length === 0 ? (
+              <p>{presentation.description}</p>
+            ) : (
+              abstractParagraphs.map((paragraph, index) => <p key={`${presentation.id}-abstract-${index}`}>{paragraph}</p>)
+            )}
           </div>
         </div>
 

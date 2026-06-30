@@ -3,9 +3,10 @@ title: Prepping for Tomorrow - Creating a Flexible AEM Architecture
 date: 2019-08-15
 event: Evolve 19 - The Adobe Digital Marketing Community
 location: Virtual
-coverImage: '/images/Prepping_for_Tomorrow.png'
-slidesUrl: https://www.slideshare.net/slideshow/evolve-19-gordon-pike-prepping-for-tomorrow-creating-a-flexible-aem-architecture/163963303
-videoUrl:
+duration: '45 mins'
+cover_image: '/images/Prepping_for_Tomorrow.png'
+slides_url: https://www.slideshare.net/slideshow/evolve-19-gordon-pike-prepping-for-tomorrow-creating-a-flexible-aem-architecture/163963303
+video_url: ''
 tags:
   - git
   - AEM
@@ -20,6 +21,10 @@ description: >-
   A presentation on creating flexible AEM architectures and implementing clean component-based architectures.
   Discusses why architecture matters, myths about architecture, and how to implement a clean architecture.
   Explores AEM in the enterprise context, application types, and component architecture including atomic design systems.
+takeaways:
+  - Design AEM architectures for reliability, agility, and long-term maintainability.
+  - Use hybrid and headless delivery patterns to scale enterprise content systems.
+  - Apply atomic design and component governance to improve consistency and speed.
 ---
 
 ## Presentation Overview

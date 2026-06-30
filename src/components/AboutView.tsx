@@ -1,7 +1,11 @@
 import { motion } from 'motion/react';
 import { Github, Linkedin, Twitter, ArrowUpRight, Code, ShieldCheck, Cpu, ArrowRight } from 'lucide-react';
+import { ABOUT_PROFILE } from '../data';
 
 export default function AboutView() {
+  const { name, image, tagline, bioParagraphs, socialLinks } = ABOUT_PROFILE;
+  const [para1, para2, para3] = bioParagraphs;
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 space-y-20" id="about-view-container">
       {/* 1. Split Editorial Hero Layout */}
@@ -11,19 +15,14 @@ export default function AboutView() {
             MEET THE ARCHITECT
           </span>
           <h1 className="font-sans text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 dark:text-slate-50 tracking-tight leading-none">
-            Mastering the <br />
-            <span className="text-indigo-600 dark:text-indigo-400 italic">Digital Craft.</span>
+            {name.split(' ').slice(0, -1).join(' ') || name} <br />
+            <span className="text-indigo-600 dark:text-indigo-400 italic">{name.split(' ').slice(-1)[0] || tagline}</span>
           </h1>
           <div className="space-y-4 text-sm sm:text-base text-slate-600 dark:text-slate-400 font-sans leading-relaxed">
-            <p>
-              I am Gordon Pike, a Principal Architect specializing in building highly resilient, decoupled enterprise marketing platforms and generative AI ecosystems. With over a decade of experience designing and managing Adobe Experience Manager (AEM) setups, I focus on building software that separates authoring concerns from presentation layers.
-            </p>
-            <p>
-              My architectural philosophy revolves around **decoupling**, **deterministic tooling**, and **resilience**. I believe that enterprise content delivery should be lightning-fast, and content authors should have creative independence without compromising system speed, stability, or visual integrity.
-            </p>
-            <p>
-              When I’m not writing schemas, planning APIs, or leading global software teams, I write about emerging paradigms on this blog—sharing blueprints, strategies, and reflections with the larger engineering community.
-            </p>
+            <p>{tagline}</p>
+            {para1 && <p>{para1}</p>}
+            {para2 && <p>{para2}</p>}
+            {para3 && <p>{para3}</p>}
           </div>
         </div>
 
@@ -32,13 +31,13 @@ export default function AboutView() {
           <div className="absolute -inset-2 rounded-2xl bg-gradient-to-tr from-indigo-500 to-slate-500 opacity-15 blur-lg dark:opacity-20" />
           <div className="relative aspect-3/4 w-full max-w-sm overflow-hidden rounded-xl border border-slate-200 bg-slate-100 shadow-xl dark:border-slate-800">
             <img
-              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=600&h=800"
-              alt="Gordon Pike Portrait"
+              src={image}
+              alt={`${name} Portrait`}
               className="h-full w-full object-cover grayscale contrast-105"
             />
             <div className="absolute bottom-4 left-4 right-4 rounded-lg bg-slate-900/80 backdrop-blur-md p-4 border border-white/10">
-              <p className="text-xs font-bold text-white">Gordon Pike</p>
-              <p className="text-[10px] font-mono text-slate-400">Principal Architect • Denver, CO</p>
+              <p className="text-xs font-bold text-white">{name}</p>
+              <p className="text-[10px] font-mono text-slate-400">Senior Architect</p>
             </div>
           </div>
         </div>
@@ -122,45 +121,51 @@ export default function AboutView() {
           </div>
 
           <div className="space-y-2">
-            <a
-              href="https://github.com/gpike"
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center justify-between p-3 rounded-lg border border-slate-100 hover:border-indigo-500 hover:bg-indigo-50/20 dark:border-slate-800 dark:hover:border-indigo-500/30 transition-all text-xs font-medium text-slate-700 dark:text-slate-300"
-              id="about-github"
-            >
-              <div className="flex items-center space-x-2.5">
-                <Github className="h-4.5 w-4.5" />
-                <span>GitHub Profile</span>
-              </div>
-              <ArrowUpRight className="h-4 w-4 text-slate-400" />
-            </a>
-            <a
-              href="https://linkedin.com"
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center justify-between p-3 rounded-lg border border-slate-100 hover:border-indigo-500 hover:bg-indigo-50/20 dark:border-slate-800 dark:hover:border-indigo-500/30 transition-all text-xs font-medium text-slate-700 dark:text-slate-300"
-              id="about-linkedin"
-            >
-              <div className="flex items-center space-x-2.5">
-                <Linkedin className="h-4.5 w-4.5" />
-                <span>LinkedIn Network</span>
-              </div>
-              <ArrowUpRight className="h-4 w-4 text-slate-400" />
-            </a>
-            <a
-              href="https://twitter.com"
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center justify-between p-3 rounded-lg border border-slate-100 hover:border-indigo-500 hover:bg-indigo-50/20 dark:border-slate-800 dark:hover:border-indigo-500/30 transition-all text-xs font-medium text-slate-700 dark:text-slate-300"
-              id="about-twitter"
-            >
-              <div className="flex items-center space-x-2.5">
-                <Twitter className="h-4.5 w-4.5" />
-                <span>Twitter / X Feed</span>
-              </div>
-              <ArrowUpRight className="h-4 w-4 text-slate-400" />
-            </a>
+            {socialLinks.github && (
+              <a
+                href={socialLinks.github}
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center justify-between p-3 rounded-lg border border-slate-100 hover:border-indigo-500 hover:bg-indigo-50/20 dark:border-slate-800 dark:hover:border-indigo-500/30 transition-all text-xs font-medium text-slate-700 dark:text-slate-300"
+                id="about-github"
+              >
+                <div className="flex items-center space-x-2.5">
+                  <Github className="h-4.5 w-4.5" />
+                  <span>GitHub Profile</span>
+                </div>
+                <ArrowUpRight className="h-4 w-4 text-slate-400" />
+              </a>
+            )}
+            {socialLinks.linkedin && (
+              <a
+                href={socialLinks.linkedin}
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center justify-between p-3 rounded-lg border border-slate-100 hover:border-indigo-500 hover:bg-indigo-50/20 dark:border-slate-800 dark:hover:border-indigo-500/30 transition-all text-xs font-medium text-slate-700 dark:text-slate-300"
+                id="about-linkedin"
+              >
+                <div className="flex items-center space-x-2.5">
+                  <Linkedin className="h-4.5 w-4.5" />
+                  <span>LinkedIn Network</span>
+                </div>
+                <ArrowUpRight className="h-4 w-4 text-slate-400" />
+              </a>
+            )}
+            {socialLinks.twitter && (
+              <a
+                href={socialLinks.twitter}
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center justify-between p-3 rounded-lg border border-slate-100 hover:border-indigo-500 hover:bg-indigo-50/20 dark:border-slate-800 dark:hover:border-indigo-500/30 transition-all text-xs font-medium text-slate-700 dark:text-slate-300"
+                id="about-twitter"
+              >
+                <div className="flex items-center space-x-2.5">
+                  <Twitter className="h-4.5 w-4.5" />
+                  <span>Twitter / X Feed</span>
+                </div>
+                <ArrowUpRight className="h-4 w-4 text-slate-400" />
+              </a>
+            )}
           </div>
         </div>
 
@@ -175,7 +180,7 @@ export default function AboutView() {
             </p>
           </div>
           <a
-            href="mailto:gordon@gordonpike.com"
+            href={`mailto:${socialLinks.email || 'gopike@gmail.com'}`}
             className="w-full inline-flex items-center justify-center rounded-lg bg-indigo-600 px-5 py-3 text-xs font-bold tracking-wider text-white shadow-md hover:bg-indigo-500 transition-all uppercase"
           >
             Schedule Brief Call

@@ -24,6 +24,7 @@ export interface Presentation {
   date: string;
   duration: string;
   description: string;
+  abstract: string;
   takeaways: string[];
   imageUrl: string;
   tags: string[];
@@ -38,6 +39,21 @@ export interface Presentation {
     type: 'pdf' | 'video' | 'link';
     url: string;
   }[];
+}
+
+export interface AboutProfile {
+  name: string;
+  image: string;
+  tagline: string;
+  bioParagraphs: string[];
+  skills: string[];
+  socialLinks: {
+    twitter?: string;
+    linkedin?: string;
+    github?: string;
+    email?: string;
+    website?: string;
+  };
 }
 
 export type View = 'home' | 'blog' | 'presentations' | 'about' | 'article-detail' | 'presentation-detail';

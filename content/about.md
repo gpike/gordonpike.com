@@ -2,34 +2,31 @@
 name: Gordon Pike
 image: /images/gpike.png
 skills:
+  - AI Readiness
+  - Content Architecture
+  - Adobe Experience Manager
+  - Enterprise Architecture
+  - Digital Experience Platforms
+  - Brand Systems
   - Cloud Architecture
-  - AWS
-  - Azure
-  - Kubernetes
-  - Docker
-  - Microservices
-  - Node.js
-  - React
-  - TypeScript
-  - Python
-  - CI/CD
-  - DevOps
-  - Security
-  - Serverless
-  - Tech Leadership
+  - Edge Delivery Services
+  - Technical Leadership
+  - Product Strategy
+  - Systems Thinking
+  - Organizational Change
 experience:
   - title: Senior Technical Architect
     company: 3|Share Corporation
     period: 2013 - 2025
-    description: Architected and led enterprise-scale Adobe Experience Manager (AEM) integrations, enhancing digital experience platforms for Fortune 500 clients. Designed and implemented cloud-native microservices on AWS and Google Cloud, improving scalability, security, and performance.
+    description: Led enterprise Adobe Experience Manager architecture and digital experience platform initiatives for large organizations, helping teams connect content strategy, system design, governance, performance, and delivery at scale.
   - title: Senior Software Architect
     company: McKesson Provider Technologies
     period: 2006 - 2013
-    description: Led architecture for Horizon Clinical Applications, designing hybrid, enterprise-wide, scalable healthcare solutions.
+    description: Designed and guided enterprise healthcare application architecture, balancing reliability, integration, usability, and the operational realities of complex clinical environments.
   - title: Founder
     company: River Run Technologies
     period: 2004 - 2006
-    description: Designed and developed custom enterprise software solutions across healthcare, finance, and industrial sectors.
+    description: Built custom software solutions for organizations across healthcare, finance, and industrial sectors, turning ambiguous business problems into practical systems people could actually use.
 education:
   - institution: Red Rocks Community College
     year: 1989 - 1991
@@ -47,73 +44,38 @@ social_links:
 
 # About Me
 
-## Innovative Technology Leader | Architecting Scalable Solutions | Driving Business Transformation
+## I help organizations prepare for an AI-first future by building content, architecture, and experiences that humans and machines can understand.
 
-With over 30 years of experience in software architecture and technology leadership, I specialize in designing and implementing scalable, secure, high-performing enterprise solutions that drive business success. My expertise spans strategic technology planning, cloud computing, enterprise architecture, and emerging technologies, allowing me to bridge the gap between business needs and cutting-edge technical solutions.
-Throughout my career, I have successfully led cross-functional teams, optimized technology ecosystems, and delivered transformative initiatives that enhance operational efficiency and customer experience. I thrive in dynamic environments where I can shape technology strategy, mentor teams, and drive innovation at scale.
+Most organizations do not have a technology problem first. They have a content problem, an architecture problem, or a people problem that technology has made easier to see. My work sits in that messy, valuable middle where strategy becomes systems and systems become experiences people actually use.
 
-# What I Bring to the Table:
+I work at the intersection of Adobe Experience Manager, enterprise architecture, content strategy, and AI readiness. I help organizations treat content as a strategic asset: structured, reusable, governed, discoverable, and ready for websites, apps, search, chatbots, agents, and whatever interface comes next.
 
-- Enterprise & Solution Architecture – Aligning IT strategy with business objectives to build scalable and future-proof solutions.
-- Leadership & Team Development – Fostering high-performing, collaborative teams that embrace continuous learning and innovation.
-- Cloud & Emerging Technologies – Driving cloud adoption, modernization, and leveraging AI/ML for business advantage.
-- Data-Driven Decision-Making – Leveraging analytics, KPIs, and insights to optimize technology investments and business strategies.
-- Digital Transformation & Process Optimization – Streamlining operations through technology-driven initiatives.
+After more than 30 years designing software, leading technical teams, and guiding enterprise change, I have learned that the strongest digital platforms are not built by chasing every new tool. They are built by connecting people, content, architecture, and technology in ways the business can sustain.
 
-## My Philosophy
+## What I Believe
 
-I am passionate about building technology-driven excellence, collaboration, and innovation cultures. By empowering teams and fostering a spirit of continuous improvement, I help organizations stay ahead in today’s fast-evolving digital landscape. I believe in the power of data to inform strategic decisions, enhance efficiency, and unlock new growth opportunities.
+AEM is more than a CMS. Used well, it is a brand engine: a way to govern content, create consistency, and support experiences across channels.
 
-## Areas of Expertise
+AI will not fix bad architecture. It will expose it faster.
 
-### Cloud Architecture
+Content is no longer just something published to pages. It is knowledge that has to be structured, reusable, governed, and understandable by both humans and machines.
 
-I specialize in designing scalable, resilient cloud systems that can handle millions of users. My experience spans AWS, Azure, and GCP, with particular depth in:
+Customers do not experience your org chart. They experience one brand, one journey, and one promise at a time.
 
-- Serverless architectures
-- Multi-region high availability
-- Cost optimization
-- Infrastructure as Code
-- Cloud security
+Technology enables. Content scales. Architecture creates options. People determine whether any of it succeeds.
 
-### Software Engineering
+## How I Work
 
-With a strong foundation in software engineering, I remain hands-on with code and architecture. My technical expertise includes:
+I am practical, opinionated, and outcome-focused. I like modern tools, but I care more about whether a system helps real people do real work.
 
-- Microservices design patterns
-- API design and implementation
-- Distributed systems
-- Performance optimization
-- Test automation
+That means I spend as much time asking questions about ownership, governance, reuse, workflow, and adoption as I do about frameworks, platforms, and infrastructure.
 
-### Technology Leadership
+The best architecture is not the most complicated one. It is the one that gives teams better choices, reduces unnecessary friction, and helps the business move with confidence.
 
-As a technology leader, I focus on:
+## What I Write And Speak About
 
-- Building high-performing engineering teams
-- Creating effective engineering processes
-- Aligning technology strategy with business goals
-- Mentoring and developing technical talent
-- Fostering inclusive engineering cultures
+I write and speak about AI readiness, structured content, Adobe Experience Manager, enterprise architecture, digital experience platforms, and technology leadership.
 
-## Speaking and Writing
+The recurring thread is simple: the future of digital experience is not just about better interfaces or bigger models. It is about creating content and systems that people can trust, teams can maintain, and intelligent tools can understand.
 
-I'm passionate about sharing knowledge with the technology community. Through my blog, conference talks, and books, I aim to help other technologists grow in their careers and build better software systems.
-
-Some of my favorite topics to speak and write about include:
-
-- Cloud architecture patterns
-- Engineering leadership
-- Microservices implementation
-- DevOps practices
-- Career development for engineers
-
-## Beyond Technology
-
-When I'm not working with technology, you can find me hiking in the mountains, reading science fiction, or experimenting with new cooking techniques. I'm also an avid photographer and occasional contributor to open-source projects.
-
-I believe in the importance of work-life balance and encourage my teams to pursue interests outside of technology to foster creativity and prevent burnout.
-
-## Let's Connect
-
-Let’s connect and explore how technology can drive your business forward.
+If that is the kind of problem you are working through, we will probably have a good conversation.

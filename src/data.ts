@@ -1,4 +1,4 @@
-import { Article, Presentation } from './types';
+import { AboutProfile, Article, Presentation } from './types';
 
 const postModules = import.meta.glob('../content/posts/*.md', {
   eager: true,
@@ -74,6 +74,30 @@ function firstNonEmpty(...values: string[]): string {
   return values.find((value) => value && value.trim().length > 0) ?? '';
 }
 
+function extractNestedMap(raw: string, sectionName: string): Record<string, string> {
+  const block = raw.match(new RegExp(`^${sectionName}:\\n((?:\\s{2}[a-zA-Z_][a-zA-Z0-9_]*:\\s*.*\\n?)+)`, 'm'));
+  if (!block) return {};
+
+  return block[1]
+    .split('\n')
+    .map((line) => line.match(/^\s{2}([a-zA-Z_][a-zA-Z0-9_]*):\s*(.+)$/))
+    .filter((match): match is RegExpMatchArray => Boolean(match))
+    .reduce<Record<string, string>>((acc, match) => {
+      acc[match[1]] = cleanupQuoted(match[2]);
+      return acc;
+    }, {});
+}
+
+function markdownToPlainText(text: string): string {
+  return text
+    .replace(/^#+\s*/gm, '')
+    .replace(/\*\*(.*?)\*\*/g, '$1')
+    .replace(/\*(.*?)\*/g, '$1')
+    .replace(/`(.*?)`/g, '$1')
+    .replace(/\[(.*?)\]\(.*?\)/g, '$1')
+    .trim();
+}
+
 export const ARTICLES: Article[] = Object.entries(postModules)
   .map(([path, raw]) => {
     const content = removeFrontmatter(raw);
@@ -98,9 +122,9 @@ export const ARTICLES: Article[] = Object.entries(postModules)
       tags,
       author: {
         name: extractField(raw, 'author') || 'Gordon Pike',
-        role: 'Principal Architect',
+        role: 'Senior Architect',
         avatar: firstNonEmpty(extractField(raw, 'author_image'), extractField(raw, 'authorImage')) || '/images/authors/GordonPike.jpg',
-        bio: 'Principal Architect specializing in enterprise decoupled architectures, generative AI ecosystems, and content management strategies.',
+        bio: 'Senior Architect specializing in enterprise decoupled architectures, generative AI ecosystems, and content management strategies.',
       },
     };
   })
@@ -113,131 +137,178 @@ export const ARTICLES: Article[] = Object.entries(postModules)
   })
   .map(({ published, publishedAt, ...article }) => article);
 
-export const PRESENTATIONS: Presentation[] = [
-  {
-    id: 'flexible-aem-architecture',
-    title: 'Prepping for Tomorrow: Flexible AEM Architecture',
-    event: 'Evolve 19',
-    location: 'San Diego, CA',
-    date: 'October 14, 2019',
-    duration: '45 mins',
-    imageUrl: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80&w=600&h=400',
-    description: 'How to design a scalable Adobe Experience Manager deployment that supports modern headless and hybrid content delivery, decoupled SPA integrations, and cloud-native auto-scaling topologies.',
-    tags: ['AEM', 'Software Architecture', 'Cloud Native', 'Headless'],
-    takeaways: [
-      'Decouple presentation from authoring using AEM Content Fragments and GraphQL APIs.',
-      'Implement multi-tier dispatcher caching to achieve sub-100ms content delivery globally.',
-      'Transition safely from AEM On-Premise/AMS to cloud-native AEM as a Cloud Service.'
-    ],
-    slides: [
-      {
-        title: 'Title Slide',
-        content: 'Prepping for Tomorrow: Flexible AEM Architecture',
-        bullets: [
-          'Gordon Pike, Principal Architect',
-          'Evolve 19 - San Diego, CA',
-          'Building highly resilient, decoupled enterprise marketing platforms.'
-        ]
-      },
-      {
-        title: 'The Monolithic Trap',
-        content: 'Why tightly-coupled web templates throttle performance and velocity.',
-        bullets: [
-          'JSP/HTL template loops block the main rendering process.',
-          'CMS deployments become risky monolith deployments.',
-          'Poor responsive rendering on non-web channels.'
-        ]
-      },
-      {
-        title: 'The Decoupled Ideal',
-        content: 'Architecting AEM as a Content Engine with modern frontend heads.',
-        bullets: [
-          'AEM manages structured content fragments and assets.',
-          'React/Next.js/Vite consumes content via highly-cached GraphQL.',
-          'Extreme flexibility: Deploy frontends in seconds instead of hours.'
-        ]
-      },
-      {
-        title: 'Edge Caching Strategies',
-        content: 'Optimizing the Content Delivery Network (CDN) for maximum throughput.',
-        bullets: [
-          'Leveraging Cloudflare/Fastly in front of the AEM Dispatcher.',
-          'Setting precise stale-while-revalidate headers.',
-          'Instant cache invalidation pipelines triggered by publish events.'
-        ]
-      },
-      {
-        title: 'Summary & Q&A',
-        content: 'Key architectural decisions to implement next quarter.',
-        bullets: [
-          'Start auditing page templates for content-fragment extraction.',
-          'Establish standard API endpoints for syndication.',
-          'Reach out: gordon@gordonpike.com / @gordonpike'
-        ]
-      }
-    ],
-    resources: [
-      { name: 'Presentation Slides (PDF)', type: 'pdf', url: '#' },
-      { name: 'Session Recording (Video)', type: 'video', url: '#' },
-      { name: 'GitHub Architecture Repo', type: 'link', url: 'https://github.com/gpike' }
-    ]
+const aboutModule = import.meta.glob('../content/about.md', {
+  eager: true,
+  query: '?raw',
+  import: 'default',
+}) as Record<string, string>;
+
+const aboutRaw = Object.values(aboutModule)[0] ?? '';
+const aboutContent = removeFrontmatter(aboutRaw);
+const aboutSocial = extractNestedMap(aboutRaw, 'social_links');
+const aboutTagline = (() => {
+  const match = aboutContent.match(/^##\s+(.+)$/m);
+  return match ? markdownToPlainText(match[1]) : 'Mastering the Digital Craft.';
+})();
+const aboutBioParagraphs = aboutContent
+  .split(/\n\n+/)
+  .map((block) => block.trim())
+  .filter((block) => block.length > 0)
+  .filter((block) => !/^#+\s/.test(block))
+  .filter((block) => !/^[-*]\s/.test(block))
+  .map((block) => markdownToPlainText(block))
+  .filter((block) => block.length > 50)
+  .slice(0, 3);
+
+export const ABOUT_PROFILE: AboutProfile = {
+  name: extractField(aboutRaw, 'name') || 'Gordon Pike',
+  image: extractField(aboutRaw, 'image') || '/images/gpike.png',
+  tagline: aboutTagline,
+  bioParagraphs: aboutBioParagraphs,
+  skills: extractArrayField(aboutRaw, 'skills'),
+  socialLinks: {
+    twitter: aboutSocial.twitter,
+    linkedin: aboutSocial.linkedin,
+    github: aboutSocial.github,
+    email: aboutSocial.email,
+    website: aboutSocial.website,
   },
-  {
-    id: 'generative-ai-aem',
-    title: 'Generative AI in Adobe Experience Manager (AEM)',
-    event: 'Adobe Summit 2024',
-    location: 'Las Vegas, NV',
-    date: 'March 26, 2024',
-    duration: '50 mins',
-    imageUrl: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&q=80&w=600&h=400',
-    description: 'An in-depth exploration of integrating Large Language Models (LLMs) into the AEM content creation workflow. Learn how to automate asset tagging, generate personalized copy, and streamline localization pipelines securely.',
-    tags: ['Generative AI', 'AEM', 'LLMs', 'Automation'],
-    takeaways: [
-      'Leverage generative AI in the side panel of AEM Assets for automatic captioning and smart tags.',
-      'Design secure, enterprise-grade API gateways to connect AEM with LLM endpoints without exposing confidential data.',
-      'Implement human-in-the-loop review chains for AI-generated copy to ensure brand compliance.'
-    ],
-    slides: [
-      {
-        title: 'Title Slide',
-        content: 'Generative AI in Adobe Experience Manager (AEM)',
-        bullets: [
-          'Gordon Pike, Principal Architect',
-          'Adobe Summit 2024 - Las Vegas, NV',
-          'Bridging structured CMS with semantic intelligence.'
-        ]
-      },
-      {
-        title: 'The AI Authoring Assistant',
-        content: 'Bringing LLM power directly into the content author’s workspace.',
-        bullets: [
-          'Dynamic copy variation generation for A/B testing inside AEM Assets.',
-          'Automated summary generation for multi-screen viewport layouts.',
-          'Context-aware translations that preserve brand voice.'
-        ]
-      },
-      {
-        title: 'Semantic Asset Ingestion',
-        content: 'Replacing manual tagging with advanced multi-modal models.',
-        bullets: [
-          'Automatic image and video captioning upon asset upload.',
-          'Deep metadata extraction (dominant colors, brand compliance).',
-          'Search assets using standard, conversational human queries.'
-        ]
-      },
-      {
-        title: 'Security and Enterprise Guardrails',
-        content: 'Ensuring your corporate data doesn’t become model training fodder.',
-        bullets: [
-          'Building custom proxy APIs to strip PII before routing to LLMs.',
-          'Enforcing strict zero-data-retention (ZDR) agreements with AI vendors.',
-          'Monitoring token usage and cost tracking at the corporate level.'
-        ]
-      }
-    ],
-    resources: [
-      { name: 'Summit Slide Deck', type: 'pdf', url: '#' },
-      { name: 'AEM Generative AI Plugin (GitHub)', type: 'link', url: 'https://github.com/gpike' }
-    ]
+};
+
+const presentationModules = import.meta.glob('../content/presentations/*.md', {
+  eager: true,
+  query: '?raw',
+  import: 'default',
+}) as Record<string, string>;
+
+function extractPresentationAbstract(content: string): string {
+  return content
+    .split(/\n\n+/)
+    .map((block) => block.trim())
+    .filter((block) => block.length > 0)
+    .filter((block) => !/^#/.test(block))
+    .filter((block) => !/^[-*]\s/.test(block))
+    .filter((block) => !/^\d+\.\s/.test(block))
+    .slice(0, 2)
+    .map((block) => markdownToPlainText(block))
+    .join('\n\n');
+}
+
+function extractPresentationSlides(title: string, event: string, location: string, content: string) {
+  const sectionRegex = /^##\s+(.+)$/gm;
+  const sections: { title: string; body: string }[] = [];
+  let lastIndex = 0;
+  let lastTitle = 'Overview';
+  let match: RegExpExecArray | null;
+
+  while ((match = sectionRegex.exec(content)) !== null) {
+    const body = content.slice(lastIndex, match.index).trim();
+    if (body) {
+      sections.push({ title: lastTitle, body });
+    }
+    lastTitle = markdownToPlainText(match[1]);
+    lastIndex = sectionRegex.lastIndex;
   }
-];
+
+  const tail = content.slice(lastIndex).trim();
+  if (tail) {
+    sections.push({ title: lastTitle, body: tail });
+  }
+
+  const parsedSlides = sections
+    .map((section) => {
+      const lines = section.body.split('\n').map((line) => line.trim()).filter(Boolean);
+      const bullets = lines
+        .filter((line) => /^[-*]\s+/.test(line) || /^\d+\.\s+/.test(line))
+        .map((line) => markdownToPlainText(line.replace(/^[-*]\s+/, '').replace(/^\d+\.\s+/, '')))
+        .filter(Boolean)
+        .slice(0, 6);
+      const contentLine = lines
+        .find((line) => !/^[-*]\s+/.test(line) && !/^\d+\.\s+/.test(line) && !/^###\s+/.test(line)) || section.title;
+
+      return {
+        title: section.title,
+        content: markdownToPlainText(contentLine),
+        bullets,
+      };
+    })
+    .filter((slide) => slide.content.length > 0)
+    .slice(0, 8);
+
+  return [
+    {
+      title: 'Title Slide',
+      content: title,
+      bullets: [
+        'Gordon Pike, Senior Architect',
+        `${event} - ${location}`,
+        'Technical session overview and implementation strategy.',
+      ],
+    },
+    ...parsedSlides,
+  ];
+}
+
+function extractPresentationTakeaways(raw: string, content: string): string[] {
+  const explicitTakeaways = extractArrayField(raw, 'takeaways');
+  if (explicitTakeaways.length > 0) {
+    return explicitTakeaways;
+  }
+
+  const keyInsights = content.match(/##\s+Key (Insights|Takeaways)([\s\S]*?)(\n##\s+|$)/i);
+  if (!keyInsights) {
+    return [];
+  }
+
+  return keyInsights[2]
+    .split('\n')
+    .map((line) => line.trim())
+    .filter((line) => /^[-*]\s+/.test(line) || /^\d+\.\s+/.test(line))
+    .map((line) => markdownToPlainText(line.replace(/^[-*]\s+/, '').replace(/^\d+\.\s+/, '')))
+    .filter(Boolean)
+    .slice(0, 5);
+}
+
+export const PRESENTATIONS: Presentation[] = Object.entries(presentationModules)
+  .map(([path, raw]) => {
+    const content = removeFrontmatter(raw);
+    const title = extractField(raw, 'title') || getSlugFromPath(path).replace(/-/g, ' ');
+    const event = extractField(raw, 'event') || 'Conference Session';
+    const location = extractField(raw, 'location') || 'Virtual';
+    const dateRaw = extractField(raw, 'date');
+    const duration = extractField(raw, 'duration') || '45 mins';
+    const imageUrl = firstNonEmpty(extractField(raw, 'cover_image'), extractField(raw, 'coverImage')) || '/images/gpike.png';
+    const description = firstNonEmpty(extractField(raw, 'description'), extractField(raw, 'excerpt')) || extractPresentationAbstract(content);
+    const tags = extractArrayField(raw, 'tags');
+    const slidesUrl = firstNonEmpty(extractField(raw, 'slides_url'), extractField(raw, 'slidesUrl'));
+    const videoUrl = firstNonEmpty(extractField(raw, 'video_url'), extractField(raw, 'videoUrl'));
+    const resources: Presentation['resources'] = [];
+
+    if (slidesUrl) {
+      resources.push({ name: 'Presentation Slides', type: 'pdf', url: slidesUrl });
+    }
+    if (videoUrl) {
+      resources.push({ name: 'Session Recording', type: 'video', url: videoUrl });
+    }
+
+    return {
+      id: getSlugFromPath(path),
+      title,
+      event,
+      location,
+      date: formatDate(dateRaw),
+      duration,
+      description,
+      abstract: extractPresentationAbstract(content),
+      takeaways: extractPresentationTakeaways(raw, content),
+      imageUrl,
+      tags,
+      slides: extractPresentationSlides(title, event, location, content),
+      resources,
+    };
+  })
+  .sort((a, b) => {
+    const aTime = new Date(a.date).getTime();
+    const bTime = new Date(b.date).getTime();
+    return bTime - aTime;
+  });

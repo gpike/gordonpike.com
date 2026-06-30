@@ -24,7 +24,7 @@ export default function Footer({ onNavigate }: FooterProps) {
               </span>
             </div>
             <p className="max-w-md text-sm leading-relaxed text-slate-600 dark:text-slate-400">
-              Principal Architect exploring decoupled systems, intelligent agentic workflows, future-proof CMS topologies, and modern web application development.
+              Senior Architect exploring decoupled systems, intelligent agentic workflows, future-proof CMS topologies, and modern web application development.
             </p>
             <div className="flex space-x-4" id="footer-social-icons">
               <a
