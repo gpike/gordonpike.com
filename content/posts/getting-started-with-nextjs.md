@@ -1,9 +1,12 @@
 ---
 title: 'Getting Started with Next.js: A Comprehensive Guide'
-date: '2023-06-15'
+published_at: 2023-06-15
+published: true
 excerpt: 'Learn how to build modern web applications with Next.js, React, and TypeScript in this comprehensive guide for beginners and experienced developers alike.'
-coverImage: '/images/articles/alexandr-podvalny-220262-unsplash.jpg'
+cover_image: /images/articles/alexandr-podvalny-220262-unsplash.jpg
 tags: ['Next.js', 'React', 'TypeScript', 'Web Development']
+author: Gordon Pike
+author_image: /images/authors/GordonPike.jpg
 ---
 
 # Getting Started with Next.js: A Comprehensive Guide
